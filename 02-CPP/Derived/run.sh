@@ -1,0 +1,1 @@
+g++ -std=c++17 -O0 -g casting.cpp -o casting && ./casting
