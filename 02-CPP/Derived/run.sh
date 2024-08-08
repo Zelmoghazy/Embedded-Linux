@@ -1,1 +1,1 @@
-g++ -std=c++17 -O0 -g lambda.cpp -o lambda && ./lambda
+g++ -std=c++17 -O0 -g const.cpp -o const && ./const

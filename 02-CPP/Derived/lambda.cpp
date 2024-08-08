@@ -92,6 +92,7 @@ int main(void)
     std::cout <<temp << std::endl;
 
 
+    // Capturless lambda are implicitly converted to a function pointer
     void (*pf)(int x) = [](int x)
     {
         std::cout << "Pointer to function \n";      // allowed
