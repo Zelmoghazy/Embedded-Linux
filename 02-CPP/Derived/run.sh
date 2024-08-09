@@ -1,1 +1,1 @@
-g++ -std=c++17 -O0 -g const.cpp -o const && ./const
+g++ -std=c++17 -O0 -g struct.cpp -o struct && ./struct
