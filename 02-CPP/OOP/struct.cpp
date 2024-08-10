@@ -14,9 +14,9 @@ struct Person {
         std::cout << "Default Constructor is called\n"; 
     }
 
-    Person(std::string n, int a){
-        name = n;
-        age = a;
+    Person(std::string name, int age){
+        this->name = name;
+        this->age = age;
     }
 
     /* Destructor */
@@ -26,9 +26,9 @@ struct Person {
         std::cout << "Destructor is called\n"; 
     }
 
-    void setter(std::string n, int a){
-        name = n;
-        age = a;
+    void setter(std::string name, int age){
+        this->name = name;
+        this->age = age;
     }
 
     std::string get_name(void){

@@ -1,1 +1,1 @@
-g++ -std=c++17 -O0 -g class.cpp -o class && ./class
+g++ -std=c++17 -O0 -g friend_class.cpp -o friend_class && ./friend_class
