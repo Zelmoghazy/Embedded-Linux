@@ -1,1 +1,1 @@
-g++ -std=c++17 -O0 -g struct.cpp -o struct && ./struct
+g++ -std=c++17 -O0 -g utils.cpp -o utils && ./utils
