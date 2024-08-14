@@ -1,1 +1,2 @@
-g++ -std=c++17 -O0 -g operators.cpp -o operators && ./operators
+g++ -std=c++14 -O0 -g -fno-elide-constructors assignment.cpp -o assignment && ./assignment
+rm assignment

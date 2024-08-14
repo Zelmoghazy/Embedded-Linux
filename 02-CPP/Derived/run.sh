@@ -1,1 +1,2 @@
-g++ -std=c++17 -O0 -g utils.cpp -o utils && ./utils
+g++ -std=c++17 -O0 -g aliases.cpp -o aliases && ./aliases
+rm aliases

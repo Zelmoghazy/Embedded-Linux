@@ -7,12 +7,14 @@ int main(void)
     // ranged for loop
     int a[] = {1,2,3,4,5};
 
-    for (size_t i = 0; i<sizeof(a)/sizeof(a[0]);i++)
+    // c-style
+    for (size_t i = 0; i<sizeof(a)/sizeof(a[0]); i++)
     {
         std::cout << a[i] << '\n';
     }
-    
-    for (int val:a)
+
+    // for (type iteration_var : container)
+    for (int val : a)
     {
         std::cout << val << '\n';
     }
