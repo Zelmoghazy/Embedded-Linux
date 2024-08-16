@@ -1,74 +1,79 @@
-#include <codecvt>
 #include <iostream>
 #include <ostream>
 #include <string>
 
+// Data members in class are private by default
 class Car 
 {
     // Private data members
-private:
-    std::string brand;
-    std::string model;
-    int year;
-
+    private:
+        std::string brand;
+        std::string model;
+        int year;
     // Public data members
-public:
-    std::string color;
-    int speed;
-    const int power = 5000;
-    // int &number; // reference must be in initializer
-    // const int constant; // constant must be in initializer list
+    public:
+        std::string color;
+        int speed{0};   // define default value at declaration
+        const int power = 5000;
+        // int &number;         // reference must be in initializer
+        // const int constant;  // constant must be in initializer list
 
-    // if no constructor is added the compile generates a default empty constructor Car(){}
-    // Car(){
-    //     std::cout << "default constructor \n";
-    // }
-    Car()=delete; // cannot create a default constructor
-    
-    // delegation constructor -> calls another constructor
-    Car(std::string brand,std::string model) : Car(brand,model,0,"BLACK",50)
-    {
+        // Constructor take the name of the class and have no return type 
+        // if no constructor is added the compile generates a default empty constructor Car(){}
+        // Car(){
+        //     std::cout << "default constructor \n";
+        // }
 
-    }
-    // Paramertized Constructor
-    Car(std::string b, std::string m, int y, std::string c, int s) 
-        : brand(b), model(m), year(y), color(c), speed(s) {}        // Initializer list
-    
-    // Methods wont be added to .text section if not used
-    // Public method to display car details
-    void displayDetails() {
-        std::cout << "Brand: " << brand << std::endl;
-        std::cout << "Model: " << model << std::endl;
-        std::cout << "Year: " << year << std::endl;
-        std::cout << "Color: " << color << std::endl;
-        std::cout << "Speed: " << speed << " km/h" << std::endl;
-    }
+        Car()=delete;   // cannot create a default constructor compiler error if called ,i.e Car c{}; -> compiler error
 
-    std::string get_car_brand() const {
-        // you cannot modify member withing a constant member function
-        // unless the member is mutable or static
-        return this->brand;
-    }
-    std::string get_car_model(){
-        return this->model;
-    }
+        // Destructor
+        ~Car(){}
+        
+        // delegation constructor -> calls another constructor
+        Car(std::string brand,std::string model) : Car(brand,model,0,"BLACK",50)
+        {
 
-    void accelerate(int increase) {
-        speed += increase;
-        std::cout << "The car accelerates by " << increase << " km/h." << std::endl;
-    }
-
-    void brake(int decrease) {
-        if (speed - decrease < 0) {
-            speed = 0;
-        } else {
-            speed -= decrease;
         }
-        std::cout << "The car slows down by " << decrease << " km/h." << std::endl;
-    }
+        // Paramertized Constructor
+        Car(std::string b, std::string m, int y, std::string c, int s) 
+            : brand(b), model(m), year(y), color(c), speed(s) {}        // Initializer list
+        
+        // Methods wont be added to .text section if not used
+        // Public method to display car details
+        void displayDetails() 
+        {
+            std::cout << "Brand: "  << brand    << std::endl;
+            std::cout << "Model: "  << model    << std::endl;
+            std::cout << "Year: "   << year     << std::endl;
+            std::cout << "Color: "  << color    << std::endl;
+            std::cout << "Speed: "  << speed    << " km/h" << std::endl;
+        }
 
-    void beep();
-    void window_up() = delete;
+        std::string get_car_brand() const {
+            // you cannot modify member withing a constant member function
+            // unless the member is mutable or static
+            return this->brand;
+        }
+        std::string get_car_model(){
+            return this->model;
+        }
+
+        void accelerate(int increase) {
+            speed += increase;
+            std::cout << "The car accelerates by " << increase << " km/h." << std::endl;
+        }
+
+        void brake(int decrease) {
+            if (speed - decrease < 0) {
+                speed = 0;
+            } else {
+                speed -= decrease;
+            }
+            std::cout << "The car slows down by " << decrease << " km/h." << std::endl;
+        }
+
+        void beep();
+        void window_up() = delete;
 };
 
 
@@ -80,8 +85,17 @@ void Car::beep(void)
 
 int main(void) 
 {
+    // ways to call the constructor
+    Car c1{"Dodge","RAM"};
+    Car c2 = {"Dodge","RAM"};
+    Car c3("Dodge","RAM");
+    /* Note that using parenthesis () is not recommended to be used 
+        - Car c{}; -> calls default constructor
+        - Car c(); -> declares a function !!!
+    */
+
     // Creating an object of the Car class
-    Car myCar("Toyota", "Corolla", 2020, "Red", 120);
+    Car myCar{"Toyota", "Corolla", 2020, "Red", 120};
 
     // Accessing public data members
     std::cout << "Car color: " << myCar.color << std::endl;
@@ -95,12 +109,12 @@ int main(void)
 
     // Car car2{}; // error call to deleted constructor
 
-    Car car3 ("Nissan","GTR");
+    Car car3 {"Nissan","GTR"};
     car3.displayDetails();
     // car3.window_up(); // Error deleted function
     std::cout << car3.get_car_brand() << std::endl;
 
-    const Car car4 ("Porsche","970");
+    const Car car4 {"Porsche","970"};
     car4.get_car_brand();       // allowed
     // car4.get_car_model();    // error const instace cann only call const member functions
     return 0;

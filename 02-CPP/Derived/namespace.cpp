@@ -25,6 +25,14 @@ namespace {
     int local_var;
 }
 
+
+// a class and a struct are also implicit namespaces
+
+struct Test{
+    static int a;
+    static int b;
+};
+
 int main(void)
 {
     a = 5;
@@ -34,6 +42,11 @@ int main(void)
 
     std::cout << a << n::a << p::a << local_var <<std::endl;
 
+
     f::fn();
 
+    Test::a = 5;
+    Test::b = 6;
+
+    return 0;
 }

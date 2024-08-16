@@ -93,6 +93,8 @@ int main(void)
     /* void fun(const int &x) */
     // we can bind a reference to const to an rvalue
     // const int &ref2 = 10; // ref is an alias to a temporary variable with a value of 10
+    // std::cout << &ref2; 
+    
     fun(10);  // ok
 
     fun(var); // ok 

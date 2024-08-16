@@ -12,7 +12,7 @@
 
 class String{
     private:
-        char* str;
+        const char* str;
         uint64_t size;
     
     public:
@@ -23,7 +23,7 @@ class String{
         ~String() {
             std::cout << "Default Destructor!\n";
         }
-        String(char* str) : str(str){
+        String(const char* str) : str(str){
             size = strlen(str);
         }
 
@@ -40,14 +40,23 @@ class String{
 
 String get_instance()
 {
-    String str; // default constructor
-    return str; // copy constructor
+    String str{};   // default constructor
+    return str;     // copy constructor
     // default destructor
 }
 
 int main(void)
 {
-    String s1(get_instance()); // copy constructor
+    {
+        String s1(get_instance()); // copy constructor
+    }
+
+    std::cout << "-----------------------\n";
+
+    {
+        String &&s2(get_instance()); // copy from temp to s2 didnt happen 
+    }
+    std::cout << "-----------------------\n";
 
     return 0;
 }

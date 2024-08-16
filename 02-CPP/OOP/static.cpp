@@ -5,6 +5,7 @@
 class Example {
 private:
     // a static data member is not related to an instance but related to the class
+    // its usable with or without an instance of the class
     static int count;  // Static data member
 public:
     // you can access the static data member using the class name or the instance name
