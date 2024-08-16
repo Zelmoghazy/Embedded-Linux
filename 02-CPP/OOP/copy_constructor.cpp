@@ -7,7 +7,22 @@
 
 /* 
     The rule of 3 in cpp
-        - if a class has a destructor, a copy/move constructor or an assignment(move) operator, it should have all three
+        - if a class has a destructor, a copy/move constructor 
+          or an assignment(move) operator, it should have all three
+
+    - The copy and move constructors define what happens when an object
+      is initialized from another object of the same type.
+
+    - The copy- and move-assignment operators define what happens when 
+    we assign an object of a class type to another object of that same class type.
+
+
+    - The destructor defines what happens when an object of the type ceases to exist.
+
+    - If a class does not define all of the copy-control members,
+     the compiler automatically defines the missing operations 
+     which can lead to problems as the compiler defined versions might not behave as intended
+    
  */
 
 class String{
@@ -32,7 +47,14 @@ class String{
             - special constructor called for replicating an object.
             - copy constructor must pass its first argument as a reference to avoid infinite loop.
 
+            The fact that the copy constructor is used to initialize nonreference parameters
+            of class type explains why the copy constructor’s own parameter must be a reference.
+            If that parameter were not a reference, then the call would never succeed—to call 
+            the copy constructor, we’d need to use the copy constructor to copy the argument,
+            but to copy the argument, we’d need to call the copy constructor, and so on indefinitely.
+
             T (const T& obj){}
+            
         */
         String (const String &obj){
             size = obj.size + 1;
