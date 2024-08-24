@@ -1,5 +1,49 @@
+#include <algorithm>
+#include <cctype>
 #include <iostream>
+#include <ostream>
 #include <string>
+
+class EnhancedString : public std::string
+{
+    public:
+        using std::string::string; // use all constructors of parent class
+
+    // add new functionality
+    bool starts_with(std::string const& prefix)
+    {
+        if(this->find(prefix) == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    bool end_with(std::string const& suffix)
+    {
+        if(this->rfind(suffix) == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    void to_upper()
+    {
+        std::transform(this->begin(), this->end(), this->begin(), ::toupper);
+    }
+
+    void to_lower()
+    {
+        std::transform(this->begin(), this->end(), this->begin(), ::tolower);
+    }
+
+    void reverse()
+    {
+        std::reverse(this->begin(), this->end());
+    }
+
+};
 
 int main(void) 
 {
@@ -12,7 +56,7 @@ int main(void)
     std::string s4(std::move(s3));        // Move constructor
     std::string s5(s1.begin(),s1.end());  // Range Constructor
     std::string s6(s2, 0, 3);             // Substring Constructor
-    std::string s6(s2, 0);                // Substring Constructor
+    std::string s7(s2, 0);                // Substring Constructor
 
     // Capacity Functions
     size_t size = s1.size();          
@@ -38,13 +82,14 @@ int main(void)
     s1.clear();
 
     // String Operations
-    std::string sub = s1.substr(6, 5);  // Extract substring
-    size_t pos = s1.find("world");      // Find first occurrence, ret std::strong::npos if not found
-    size_t rpos = s1.rfind("l");        // Find last occurrence
-    int result = s1.compare("Hello");   // Compare strings
+    str += " World";
+    std::string sub = str.substr(6, 5);  // Extract substring
+    size_t pos = str.find("world");      // Find first occurrence, ret std::strong::npos if not found
+    size_t rpos = str.rfind("l");        // Find last occurrence
+    int result = str.compare("Hello");   // Compare strings
 
     // Concatenation
-    std::string s7 = s1 + s2;        // Concatenate strings
+    std::string s8 = s1 + s2;        // Concatenate strings
 
     // Conversion
     const char* cstr = s1.c_str();   // Get C-style string
@@ -61,8 +106,6 @@ int main(void)
     }
     std::cout << std::endl;
 
-
-
     // String Input/Output
     std::cin >> s;                   // Input until space
     std::getline(std::cin, s);       // Input until newline
@@ -70,6 +113,46 @@ int main(void)
 
     // Swapping
     s1.swap(s2);                     // Swap strings
+
+    // Raw Strings
+    
+    // Example 1: A simple raw string
+    std::string raw_string = R"(This is a raw string. It can contain "quotes" and \backslashes\ without needing to escape them.)";
+    std::cout << raw_string << std::endl;
+
+    // Example 2: A raw string with line breaks
+    std::string multiline_string = R"(This is a raw string
+    that spans multiple lines
+    without needing newline characters)";
+    std::cout << multiline_string << std::endl;
+
+    // Example 3: A raw string with a custom delimiter "DELIM"
+    std::string rawStringWithDelimiter = R"delim(This is a raw string that contains parentheses () and even ))).
+    You can use custom delimiters to avoid ending the string prematurely.)delim";
+
+    std::cout << "Raw String with Delimiter:" << std::endl;
+    std::cout << rawStringWithDelimiter << std::endl;
+
+
+    // Adding funtionality to the string class
+    
+    EnhancedString estr = "Hello world";
+
+    std::cout << estr.starts_with("Hello")<<std::endl;;
+    std::cout << estr.end_with("Hello")<<std::endl;
+
+    estr.to_upper();
+
+    std::cout << estr << std::endl;
+
+    estr.to_lower();
+
+    std::cout << estr << std::endl;
+
+    estr.reverse();
+
+    std::cout << estr << std::endl;
+
 
     return 0;
 }
