@@ -39,4 +39,8 @@ int main(void)
 
     std::cout << std::setfill('#') << "i: " << std::setw(12) << num <<'\n';
 
+    std::cout<<false<<"\n";
+    std::cout << std::boolalpha;   
+    std::cout<<false<<"\n";
+
 }
