@@ -1,9 +1,10 @@
+#include <functional>
 #include <iostream>
 #include <set>
 
 int main() {
     // Create a set of integers
-    std::set<int> mySet;
+    std::set<int, std::greater<>> mySet;
 
     // Insert elements into the set
     mySet.insert(10);
