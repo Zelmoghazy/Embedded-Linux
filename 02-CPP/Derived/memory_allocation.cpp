@@ -1,8 +1,17 @@
+#include <cstddef>
 #include <iostream>
 
 int main(void)
 {
     // Dynamic memory allocation
+
+    int* ptr = new int{42};
+    std::cout << "Value: " << *ptr << std::endl;
+
+    delete ptr;
+    ptr = nullptr;
+
+    /* ----------------------------------------------- */
 
     int* arr = new int[5];
 
