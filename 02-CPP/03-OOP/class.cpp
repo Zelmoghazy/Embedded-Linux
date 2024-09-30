@@ -13,10 +13,10 @@ class Car
     // Public data members
     public:
         std::string color;
-        int speed{0};   // define default value at declaration
+        int speed{0};               // define default value at declaration
         const int power = 5000;
-        // int &number;         // reference must be in initializer
-        // const int constant;  // constant must be in initializer list
+        // int &number;             // reference must be in initializer
+        // const int constant;      // constant must be in initializer list
 
         // Constructor take the name of the class and have no return type 
         // if no constructor is added the compile generates a default empty constructor Car(){}
@@ -26,7 +26,7 @@ class Car
 
         Car()=delete;   // cannot create a default constructor compiler error if called ,i.e Car c{}; -> compiler error
 
-        // Destructor
+        // Destructor take ~ followed by the name of the class and have no return type
         ~Car(){}
         
         // delegation constructor -> calls another constructor

@@ -62,6 +62,10 @@ class String{
             strcpy(str,obj.str);
         }
 
+        // to forbid copy constructor
+        // if you dont want your class instances to be copied
+        // String (const String &obj) = delete;
+
         void display()
         {
             std::cout << str << ' ' << size << std::endl;

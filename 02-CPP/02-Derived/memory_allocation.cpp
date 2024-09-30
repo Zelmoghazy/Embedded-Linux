@@ -13,6 +13,7 @@ int main(void)
 
     /* ----------------------------------------------- */
 
+    // array of objects are created by calling new[]
     int* arr = new int[5];
 
     for (int i = 0; i < 5; ++i) {
@@ -26,6 +27,7 @@ int main(void)
     std::cout << std::endl;
 
     // Free the allocated array memory
+    // arrays of objects are destructed by calling delete[]
     delete[] arr;
     arr = nullptr;
 

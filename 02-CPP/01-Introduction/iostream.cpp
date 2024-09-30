@@ -35,6 +35,8 @@ int main(void)
     std::cout << "Hex :" << std::hex << num << std::dec << '\n';      // reset to decimal
     std::cout << "Hex :" << std::hex << std::showbase << num << '\n';
     std::cout << "Oct :" << std::oct << num << '\n';
+
+    // Reset
     std::cout << "Dec :" << std::dec << num << '\n';
 
     std::cout << std::setfill('#') << "i: " << std::setw(12) << num <<'\n';

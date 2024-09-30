@@ -5,10 +5,12 @@ int main(void)
 {
     // boolean, true or false
     bool b = true;
+
     // 8 bits ASCII char
     char c = 'a';
+
     // array of chars ended by \0
-    char* s = (const char*)"a C string";
+    const char* s = (const char*)"a C string";
 
     std::string t = "a C++ string";// class provided by the STL
 
@@ -29,7 +31,8 @@ int main(void)
     // 32 bits signed integer
     int i = -123456;
 
-    unsigned int iu = 1234567; // 32 bits signed integer
+    // 32 bits unsigned integer
+    unsigned int iu = 1234567; 
 
     // 32 or 64 bits (ptr size)
     long l = 0L;
@@ -68,4 +71,5 @@ int main(void)
 
     uint64_t si64u = 0x1bc;// 64 bits, replaced unsigned long long
 
+    return 0;
 }
