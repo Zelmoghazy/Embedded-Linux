@@ -43,8 +43,8 @@ int main(void)
     std::cout << ptrx   << '\n';  
     std::cout << &ptrx  << '\n';  // a pointer has its own address
 
-    fun(&x);
-    fun(x);
+    fun(&x);        // by pointer
+    fun(x);         // by reference
 
     std::cout << x << std::endl;
 

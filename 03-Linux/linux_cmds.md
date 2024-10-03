@@ -299,9 +299,17 @@ alt  + d        # delete word to right of cursor
 ctrl + k        # delete to the end
 ctrl + u        # delete to beginning
 
+ctrl + xx       # jump between saved locations
+
 ctrl + r        # reverse search
 
 ctrl + _        # undo last executed action
+
+Alt+r           # Revert all changes to the current line
+
+ctrl+c          # Capitalise the character under the cursor and move to the end of the current smallword
+
+Alt-Ctrl-e:     #Expand the current line (expand aliases for example or enviroment vars)
  
 ```
 
@@ -311,6 +319,10 @@ history     # all previous commands
 history | awk '{print $2}'
 !!          # execute last command
 !122        # execute comman 122 from history
+
+!$: An alias for the last bigword of the previous command.
+!^: An alias for the first bigword of the previous command.
+!*: An alias for the previous command without the last bigword.
 ```
 
 ## File Compression and Archiving

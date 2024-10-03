@@ -33,6 +33,21 @@ struct Test{
     static int b;
 };
 
+
+// Nested Name soaces
+namespace A {
+    namespace B {
+        namespace C {
+            //...
+        }
+    }
+}
+
+// equivalent to since c++17
+namespace A::B::C {
+    //...
+}
+
 int main(void)
 {
     a = 5;

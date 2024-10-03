@@ -14,13 +14,19 @@ enum class Color {
 
 // Base class
 class Shape {
+
 public:
     Shape(){
         color = Color::Black;
     }
+
     Shape(Color color) : color(color){};
-    // Virtual function for polymorphism
-    // vtable => (dynamic binding)
+
+    /*
+        Virtual function for polymorphism
+        vtable => (dynamic binding)
+        the most derived object is the one considered
+    */
     virtual void draw() const {
         std::cout << "Drawing a generic shape\n";
     }
@@ -29,6 +35,7 @@ public:
 
     // Virtual destructor to ensure proper cleanup
     virtual ~Shape() {}
+
 private:
     Color color;
 };
@@ -41,6 +48,12 @@ public:
     Circle(int r){
         this->radius = r;
     }
+
+    /*
+        when overriding a virtual method 
+        the override keyword needs to be used
+    */
+
     // Override the draw function
     void draw() const override {
         std::cout << "Drawing a circle\n";
@@ -93,7 +106,10 @@ public:
         std::cout << "Drawing a triangle\n";
     }
 
-    void display_dim() const override {
+    /*
+        by declaring a virtual method final it cannot be overriden further 
+     */
+    void display_dim() const final {
         std::cout << "l1 = " << l1 <<  " - " << "l2 = " << l2 <<  " - " << "l3 = " << l3 << std::endl;;
     }
 private:
@@ -102,14 +118,17 @@ private:
     int l3 = 0;
 };
 
-void displayShape(const Shape& shape) {
+
+void displayShape(const Shape& shape) 
+{
     // Polymorphic call to draw the appropriate shape
     shape.draw();
     shape.display_dim();
 }
 
 
-int main() {
+int main(void) 
+{
     Circle circle{5};
     Rectangle rectangle{5,10};
     Triangle triangle{5,12,13};
@@ -118,6 +137,14 @@ int main() {
     displayShape(rectangle);  // Outputs: Drawing a rectangle
     displayShape(triangle);   // Outputs: Drawing a triangle
 
+    Shape &s1 = circle;
+    displayShape(s1);    
+
+    Shape &s2 = rectangle;
+    displayShape(s2);    
+
+    Shape &s3 = triangle;
+    displayShape(s3);    
 
     return 0;
 }

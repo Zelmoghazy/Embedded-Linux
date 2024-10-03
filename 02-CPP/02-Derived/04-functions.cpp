@@ -19,7 +19,6 @@ void printf_default(std::string message = "Hello World")
 
 /* ----------------------------------------- */
 
-// Function Overloading
 int get_random_int(void)
 {
     std::random_device rd;
@@ -30,6 +29,7 @@ int get_random_int(void)
     return distr(gen);
 }
 
+// Function Overloading
 int mul(int a = get_random_int(), int b = get_random_int())
 {
     std::cout << "mul(int,int)" << std::endl;
