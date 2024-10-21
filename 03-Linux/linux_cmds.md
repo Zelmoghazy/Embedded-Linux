@@ -257,12 +257,14 @@ sort --unique
 ```
 ps aux              # list all running processes
 ps --sort size      # sort processes by memory consumption
+watch -n 1 "ps auxf"
 ```
 
 ```
 ps aux | awk '{print $11}'           # print the command column of ps aux
 ps aux | awk '/root/ {print $2}'     # Print the second column of the lines containing "root"   
 awk 'NR%3==1' {{path/to/file}}       #  Print every third line starting from the first line
+echo "input" | awk '{print $1"string"}' # append string to stdout
 ```
 
 
@@ -351,4 +353,361 @@ tar xvzf {{archive.tar.gz}}     # both decompresses and extracts the files
 
 ```
 {{command}} | sed 's/apple/mango/g'
+```
+
+```
+cut {file} -c 2              # select two characters from each line of current file
+ls -l | cut -d ' ' -f 1-4    # selects words from 1-4 delimited by space
+```
+
+```
+hexdump -C  main                    # dump executable in canonical mode (hex+ascii)
+hexdump -C -n 64  main              # interpret 64 bytes only from beginning
+hexdump -C -s 1024 -n 64  main      # interpret 64 bytes only from 1024
+
+```
+
+
+```
+file {file}         # description of file type
+```
+
+```
+stat {file}         # properties about a specific file such as size, permissions, creation and access dates
+```
+
+### System Information
+
+```
+
+uname           # Print kernel name
+uname -m -p     # Print system architecture and processor information:
+uname -s -r -v  # Print kernel name, kernel release and kernel version
+uname -n        # Print system hostname
+uname -a        # - Print all available system information:
+```
+
+
+```
+free -h # Display memory in human-readable units:
+```
+
+```
+
+df  #  Display all filesystems and their disk usage using 512-byte units:
+```
+
+```
+uptime --pretty # Show only the amount of time the system has been booted for:
+```
+
+```
+lscpu       # Display information about the CPU architecture.
+lspci       # List all PCI devices.
+lsusb       # Display information about USB buses and devices connected to them.
+lsblk       # Lists information about devices
+```
+
+```
+cat /etc/hostname
+whoami
+cat /etc/lsb-release
+cat /etc/os-release
+cat /proc/meminfo
+
+```
+
+```
+id # Display current user and group identity.
+```
+
+```
+dmesg       # Write the kernel messages to stdout.
+journalctl  # Query the systemd journal.
+```
+
+```
+Find files by extension:
+   find {{root_path}} -name '{{*.ext}}'
+   
+   
+ - Find empty files (0 byte) or directories and delete them verbosely:
+   find {{root_path}} -type {{f|d}} -empty -delete -print
+```
+
+```
+ls /proc/
+ls /sys/
+ls /dev/
+```
+
+```
+top         # dynamic realtime information about running processes
+```
+
+
+```
+ps -aux     # all with tty, except session leaders, effective user id or name,
+ps -elf
+ps -o pid,ppid,cmd
+ps -lt
+ps -auTH
+
+```
+
+```
+cat /sys/class/power_supply/BAT0/capacity       # battery percentage
+```
+
+### Process
+```
+pidof 
+pstree
+jobs
+```
+
+```
+pkill
+kill
+```
+
+```
+crontab -e
+
+ - Sample job which runs at 10:00 every day (* means any value):
+   0 10 * * * {{command_to_execute}}
+
+ - Sample crontab entry, which runs a command every 10 minutes:
+   */10 * * * * {{command_to_execute}}
+```
+
+### Networking
+```
+ping google.com
+ping {host}
+ping -c {count} {host}  # ping certain number of times
+ping -i {host}          # ping every second
+```
+
+```
+## Get IP address of current machine
+ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+```
+
+```
+ - List all ports:
+   netstat --all
+
+ - List all listening ports:
+   netstat --listening
+
+ - List listening TCP ports:
+   netstat --tcp
+
+ - Display PID and program names:
+   netstat --program
+```
+
+```
+ - Connect to a remote server:
+   ssh {{username}}@{{remote_host}}
+```
+
+```
+scp {{path/to/local_file}} {{remote_host}}:{{path/to/remote_file}}
+```
+```
+tcpdump
+```
+
+```
+arp
+```
+
+```
+ - Start a listener on the specified TCP port and send a file into it:
+   nc -l -p {{port}} < {{filename}}
+
+ - Connect to a target listener on the specified port and receive a file from it:
+   nc {{host}} {{port}} > {{received_filename}}
+
+ - Scan the open TCP ports of a specified host:
+   nc -v -z -w {{timeout_in_seconds}} {{host}} {{start_port}}-{{end_port}}
+
+ - Send an HTTP GET request:
+   echo -e "GET / HTTP/1.1\nHost: {{host}}\n\n" | nc {{host}} 80
+```
+
+```
+ - View network settings of an Ethernet adapter:
+   ifconfig eth0
+
+ - Display details of all interfaces, including disabled interfaces:
+   ifconfig -a
+
+ - Disable eth0 interface:
+   ifconfig eth0 down
+
+ - Enable eth0 interface:
+   ifconfig eth0 up
+
+ - Assign IP address to eth0 interface:
+   ifconfig eth0 {{ip_address}}
+
+```
+
+
+```
+ - Download the contents of a URL to a file (named "foo" in this case):
+   wget {{https://example.com/foo}}
+
+ - Download the contents of a URL to a file (named "bar" in this case):
+   wget --output-document {{bar}} {{https://example.com/foo}}
+
+ - Download a single web page and all its resources with 3-second intervals between requests (scripts, stylesheets, images, etc.):
+   wget --page-requisites --convert-links --wait=3 {{https://example.com/somepage.html}}
+
+ - Download all listed files within a directory and its sub-directories (does not download embedded page elements):
+   wget --mirror --no-parent {{https://example.com/somepath/}}
+
+ - Limit the download speed and the number of connection retries:
+   wget --limit-rate={{300k}} --tries={{100}} {{https://example.com/somepath/}}
+
+ - Download a file from an HTTP server using Basic Auth (also works for FTP):
+   wget --user={{username}} --password={{password}} {{https://example.com}}
+
+ - Continue an incomplete download:
+   wget --continue {{https://example.com}}
+
+ - Download all URLs stored in a text file to a specific directory:
+   wget --directory-prefix {{path/to/directory}} --input-file {{URLs.txt}}
+
+```
+
+```
+ - Make an HTTP GET request and dump the contents in stdout:
+   curl {{https://example.com}}
+
+ - Make an HTTP GET request, fo[L]low any 3xx redirects, and [D]ump the reply headers and contents to stdout:
+   curl --location --dump-header - {{https://example.com}}
+
+ - Download a file, saving the [O]utput under the filename indicated by the URL:
+   curl --remote-name {{https://example.com/filename.zip}}
+
+ - Send form-encoded [d]ata (POST request of type application/x-www-form-urlencoded). Use --data @file_name or --data @'-' to read from stdin:
+   curl -X POST --data {{'name=bob'}} {{http://example.com/form}}
+
+ - Send a request with an extra header, using a custom HTTP method and over a pro[x]y (such as BurpSuite), ignoring insecure self-signed certificates:
+   curl -k --proxy {{http://127.0.0.1:8080}} --header {{'Authorization: Bearer token'}} --request {{GET|PUT|POST|DELETE|PATCH|...}} {{https://example.com}}
+
+ - Send data in JSON format, specifying the appropriate Content-Type [H]eader:
+   curl --data {{'{"name":"bob"}'}} --header {{'Content-Type: application/json'}} {{http://example.com/users/1234}}
+
+ - Pass client certificate and key for a resource, skipping certificate validation:
+   curl --cert {{client.pem}} --key {{key.pem}} --insecure {{https://example.com}}
+
+ - Resolve a hostname to a custom IP address, with [v]erbose output (similar to editing the /etc/hosts file for custom DNS resolution):
+   curl --verbose --resolve {{example.com}}:{{80}}:{{127.0.0.1}} {{http://example.com}}
+
+```
+
+## Package management
+
+```
+ - Install a package:
+   dpkg -i {{path/to/file.deb}}
+
+ - Remove a package:
+   dpkg -r {{package}}
+
+ - List installed packages:
+   dpkg -l {{pattern}}
+
+ - List a package's contents:
+   dpkg -L {{package}}
+
+ - List contents of a local package file:
+   dpkg -c {{path/to/file.deb}}
+
+ - Find out which package owns a file:
+   dpkg -S {{path/to/file}}
+```
+
+## Tracking
+
+```
+ - Start tracing a specific [p]rocess by its PID:
+   strace -p {{pid}}
+   
+strace -e openat df -h     #  Trace a [p]rocess and filt[e]r output by system call:
+strace -c ls                #  Count time, calls, and errors for each system call and report a summary on program exit
+
+ - Show the [T]ime spent in every system call:
+   strace -p {{pid}} -T
+
+```
+
+```
+# Print (trace) library calls of a program binary:
+ltrace ./program
+```
+
+```
+# Display shared library dependencies of a binary:
+ldd path/to/binary
+```
+
+## Symbolic Link
+
+```
+# To create a symlink:
+ln -s <source-location> <symlink-location>
+
+# Create a hard link to a file:
+ln /path/to/file path/to/hardlink
+```
+
+```
+# Read from `/dev/urandom`, 2*512 Bytes, and put it into `/tmp/test.txt`.
+# Note: each iteration reads 512 bytes (the selected block size).
+dd if=/dev/urandom of=/tmp/test.txt count=2 bs=512
+```
+
+```
+# Calculate the parent directory of a given path:
+dirname path/to/file_or_directory
+```
+
+```
+# Start an [i]nteractive session with the standard math [l]ibrary enabled:
+   bc --interactive --mathlib
+
+# Calculate a sine/cosine/arctangent/natural logarithm/exponential function using `mathlib`:
+echo 's|c|a|l|e(1)' | bc --mathlib
+```
+```
+pkill -KILL -u $USER
+sudo shutdown -h now
+sudo reboot
+```
+
+```
+# get process id
+ps ax | grep Main
+```
+
+
+```
+# How many threads in process
+watch -n 1 "ps huH p <pid> | wc -l"
+```
+
+```
+# tree view of processes and their children
+watch -n 1 "ps auxf"
+```
+
+```
+# run terminator with a command
+terminator -e 'btop; exec bash'
 ```

@@ -2,10 +2,10 @@
 #include <memory>
 
 /*
- Interface class
-    - it is not allowed to create instance from the interface class
-    - in the inherited class we must implement all pure virtual functions
-
+    Interface class (Pure abstract class)
+        - Has no data members and all of its methods are pure virtual
+        - it is not allowed to create instance from the interface class
+        - in the inherited class we must implement all pure virtual functions
 */
 
 class Shape {
@@ -20,8 +20,6 @@ public:
 
 // Implementing class for a Circle
 class Circle : public Shape {
-private:
-    double radius;
 
 public:
     Circle(double r) : radius(r) {}
@@ -33,6 +31,9 @@ public:
     double area() const override {
         return 3.14159 * radius * radius;
     }
+    
+private:
+    double radius;
 };
 
 // Implementing class for a Rectangle
@@ -52,7 +53,8 @@ public:
     }
 };
 
-int main() {
+int main() 
+{
     // // Create shapes using interface pointer
     // std::unique_ptr<Shape> circle = std::make_unique<Circle>(5.0);
     // std::unique_ptr<Shape> rectangle = std::make_unique<Rectangle>(4.0, 6.0);

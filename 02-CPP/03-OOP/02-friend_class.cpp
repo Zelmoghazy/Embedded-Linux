@@ -39,7 +39,7 @@ class D {
     public :
         D(int val1,int val2, int val3, int val4) : Dval1(val1), Dval2(val2),Dval3(val3),Dval4(val4){}
 
-        // Practoical use Implementation of the friend function
+        // Practical use Implementation of the friend function
         friend std::ostream& operator<<(std::ostream& os, const D& obj) {
             os << "Dval1: " << obj.Dval1 << ", ";
             os << "Dval2: " << obj.Dval2 << ", ";

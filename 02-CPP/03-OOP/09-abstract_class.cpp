@@ -1,7 +1,11 @@
 #include <iostream>
 
-// Abstract class
-// abstract class in C++ is a class that contains at least one pure virtual function that makes the class not instantiable
+/*
+    Abstract class
+        - abstract class in C++ is a class that contains at least one pure virtual function
+        - which makes the class not instantiable
+*/ 
+
 class Animal {
 public:
     virtual void makeSound() const = 0;

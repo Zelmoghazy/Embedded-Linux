@@ -31,7 +31,9 @@ public:
         std::cout << "Drawing a generic shape\n";
     }
 
-    virtual void display_dim() const = 0;  // pure virtual funtion must be implemented in derived classes
+    // pure virtual funtion must be implemented in derived classes
+    // marked by "=0" and makes their class abstract
+    virtual void display_dim() const = 0; 
 
     // Virtual destructor to ensure proper cleanup
     virtual ~Shape() {}
@@ -145,6 +147,8 @@ int main(void)
 
     Shape &s3 = triangle;
     displayShape(s3);    
+
+    // Shape s;                // error : abstract class due to display_dim thus cannot be instantiated
 
     return 0;
 }
