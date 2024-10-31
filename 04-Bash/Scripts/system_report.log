@@ -1,0 +1,236 @@
+System Report - Generated on Mon Oct 21 19:40:10 EEST 2024
+
+==================== System Uptime ====================
+ 19:40:10 up 51 min,  0 users,  load average: 0.31, 0.18, 0.09
+
+==================== System Date and Time ====================
+Mon Oct 21 19:40:10 EEST 2024
+
+==================== Logged In Users ====================
+
+
+==================== CPU Information ====================
+Architecture:                       x86_64
+CPU op-mode(s):                     32-bit, 64-bit
+Address sizes:                      39 bits physical, 48 bits virtual
+Byte Order:                         Little Endian
+CPU(s):                             12
+On-line CPU(s) list:                0-11
+Vendor ID:                          GenuineIntel
+Model name:                         Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+CPU family:                         6
+Model:                              158
+Thread(s) per core:                 2
+Core(s) per socket:                 6
+Socket(s):                          1
+Stepping:                           10
+BogoMIPS:                           4416.01
+Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid pni pclmulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi ept vpid ept_ad fsgsbase bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves md_clear flush_l1d arch_capabilities
+Virtualization:                     VT-x
+Hypervisor vendor:                  Microsoft
+Virtualization type:                full
+L1d cache:                          192 KiB (6 instances)
+L1i cache:                          192 KiB (6 instances)
+L2 cache:                           1.5 MiB (6 instances)
+L3 cache:                           9 MiB (1 instance)
+Vulnerability Gather data sampling: Unknown: Dependent on hypervisor status
+Vulnerability Itlb multihit:        KVM: Mitigation: VMX disabled
+Vulnerability L1tf:                 Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Vulnerability Mds:                  Mitigation; Clear CPU buffers; SMT Host state unknown
+Vulnerability Meltdown:             Mitigation; PTI
+Vulnerability Mmio stale data:      Mitigation; Clear CPU buffers; SMT Host state unknown
+Vulnerability Retbleed:             Mitigation; IBRS
+Vulnerability Spec rstack overflow: Not affected
+Vulnerability Spec store bypass:    Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+Vulnerability Spectre v1:           Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:           Mitigation; IBRS, IBPB conditional, STIBP conditional, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:                Unknown: Dependent on hypervisor status
+Vulnerability Tsx async abort:      Not affected
+
+==================== Memory Usage ====================
+               total        used        free      shared  buff/cache   available
+Mem:           7.7Gi       1.2Gi       5.5Gi       3.0Mi       1.1Gi       6.3Gi
+Swap:          2.0Gi          0B       2.0Gi
+
+==================== Disk Usage ====================
+Filesystem      Size  Used Avail Use% Mounted on
+none            3.9G  4.0K  3.9G   1% /mnt/wsl
+none            931G  709G  223G  77% /usr/lib/wsl/drivers
+none            3.9G     0  3.9G   0% /usr/lib/modules
+none            3.9G     0  3.9G   0% /usr/lib/modules/5.15.146.1-microsoft-standard-WSL2
+/dev/sdc       1007G   18G  939G   2% /
+none            3.9G   96K  3.9G   1% /mnt/wslg
+none            3.9G     0  3.9G   0% /usr/lib/wsl/lib
+rootfs          3.9G  1.9M  3.9G   1% /init
+none            3.9G  912K  3.9G   1% /run
+none            3.9G     0  3.9G   0% /run/lock
+none            3.9G     0  3.9G   0% /run/shm
+tmpfs           4.0M     0  4.0M   0% /sys/fs/cgroup
+none            3.9G  496K  3.9G   1% /mnt/wslg/versions.txt
+none            3.9G  496K  3.9G   1% /mnt/wslg/doc
+C:\             931G  709G  223G  77% /mnt/c
+D:\             932G  877G   55G  95% /mnt/d
+G:\             100G   87G   14G  87% /mnt/g
+snapfuse        128K  128K     0 100% /snap/bare/5
+snapfuse         15M   15M     0 100% /snap/cheat/4279
+snapfuse         64M   64M     0 100% /snap/core20/2318
+snapfuse         64M   64M     0 100% /snap/core20/2379
+snapfuse         75M   75M     0 100% /snap/core22/1612
+snapfuse         75M   75M     0 100% /snap/core22/1621
+snapfuse        272M  272M     0 100% /snap/firefox/4955
+snapfuse        273M  273M     0 100% /snap/firefox/5134
+snapfuse        505M  505M     0 100% /snap/gnome-42-2204/172
+snapfuse        506M  506M     0 100% /snap/gnome-42-2204/176
+snapfuse         92M   92M     0 100% /snap/gtk-common-themes/1535
+snapfuse         92M   92M     0 100% /snap/lxd/24061
+snapfuse         92M   92M     0 100% /snap/lxd/29619
+snapfuse         40M   40M     0 100% /snap/snapd/21184
+snapfuse         39M   39M     0 100% /snap/snapd/21759
+
+==================== Mounted Filesystems ====================
+none         on  /mnt/wsl                                             type  tmpfs          (rw,relatime)
+none         on  /usr/lib/wsl/drivers                                 type  9p             (ro,nosuid,nodev,noatime,dirsync,aname=drivers;fmask=222;dmask=222,mmap,access=client,msize=65536,trans=fd,rfd=7,wfd=7)
+none         on  /usr/lib/modules                                     type  tmpfs          (rw,relatime)
+none         on  /usr/lib/modules/5.15.146.1-microsoft-standard-WSL2  type  overlay        (rw,nosuid,nodev,noatime,lowerdir=/modules,upperdir=/modules_overlay/rw/upper,workdir=/modules_overlay/rw/work)
+/dev/sdc     on  /                                                    type  ext4           (rw,relatime,discard,errors=remount-ro,data=ordered)
+none         on  /mnt/wslg                                            type  tmpfs          (rw,relatime)
+/dev/sdc     on  /mnt/wslg/distro                                     type  ext4           (ro,relatime,discard,errors=remount-ro,data=ordered)
+none         on  /usr/lib/wsl/lib                                     type  overlay        (rw,nosuid,nodev,noatime,lowerdir=/gpu_lib_packaged:/gpu_lib_inbox,upperdir=/gpu_lib/rw/upper,workdir=/gpu_lib/rw/work)
+rootfs       on  /init                                                type  rootfs         (ro,size=4031936k,nr_inodes=1007984)
+none         on  /dev                                                 type  devtmpfs       (rw,nosuid,relatime,size=4031936k,nr_inodes=1007984,mode=755)
+sysfs        on  /sys                                                 type  sysfs          (rw,nosuid,nodev,noexec,noatime)
+proc         on  /proc                                                type  proc           (rw,nosuid,nodev,noexec,noatime)
+devpts       on  /dev/pts                                             type  devpts         (rw,nosuid,noexec,noatime,gid=5,mode=620,ptmxmode=000)
+none         on  /run                                                 type  tmpfs          (rw,nosuid,nodev,mode=755)
+none         on  /run/lock                                            type  tmpfs          (rw,nosuid,nodev,noexec,noatime)
+none         on  /run/shm                                             type  tmpfs          (rw,nosuid,nodev,noatime)
+none         on  /dev/shm                                             type  tmpfs          (rw,nosuid,nodev,noatime)
+none         on  /run/user                                            type  tmpfs          (rw,nosuid,nodev,noexec,noatime,mode=755)
+binfmt_misc  on  /proc/sys/fs/binfmt_misc                             type  binfmt_misc    (rw,relatime)
+tmpfs        on  /sys/fs/cgroup                                       type  tmpfs          (ro,nosuid,nodev,noexec,size=4096k,nr_inodes=1024,mode=755)
+cgroup2      on  /sys/fs/cgroup/unified                               type  cgroup2        (rw,nosuid,nodev,noexec,relatime,nsdelegate)
+cgroup       on  /sys/fs/cgroup/cpuset                                type  cgroup         (rw,nosuid,nodev,noexec,relatime,cpuset)
+cgroup       on  /sys/fs/cgroup/cpu                                   type  cgroup         (rw,nosuid,nodev,noexec,relatime,cpu)
+cgroup       on  /sys/fs/cgroup/cpuacct                               type  cgroup         (rw,nosuid,nodev,noexec,relatime,cpuacct)
+cgroup       on  /sys/fs/cgroup/blkio                                 type  cgroup         (rw,nosuid,nodev,noexec,relatime,blkio)
+cgroup       on  /sys/fs/cgroup/memory                                type  cgroup         (rw,nosuid,nodev,noexec,relatime,memory)
+cgroup       on  /sys/fs/cgroup/devices                               type  cgroup         (rw,nosuid,nodev,noexec,relatime,devices)
+cgroup       on  /sys/fs/cgroup/freezer                               type  cgroup         (rw,nosuid,nodev,noexec,relatime,freezer)
+cgroup       on  /sys/fs/cgroup/net_cls                               type  cgroup         (rw,nosuid,nodev,noexec,relatime,net_cls)
+cgroup       on  /sys/fs/cgroup/perf_event                            type  cgroup         (rw,nosuid,nodev,noexec,relatime,perf_event)
+cgroup       on  /sys/fs/cgroup/net_prio                              type  cgroup         (rw,nosuid,nodev,noexec,relatime,net_prio)
+cgroup       on  /sys/fs/cgroup/hugetlb                               type  cgroup         (rw,nosuid,nodev,noexec,relatime,hugetlb)
+cgroup       on  /sys/fs/cgroup/pids                                  type  cgroup         (rw,nosuid,nodev,noexec,relatime,pids)
+cgroup       on  /sys/fs/cgroup/rdma                                  type  cgroup         (rw,nosuid,nodev,noexec,relatime,rdma)
+cgroup       on  /sys/fs/cgroup/misc                                  type  cgroup         (rw,nosuid,nodev,noexec,relatime,misc)
+none         on  /mnt/wslg/versions.txt                               type  overlay        (rw,relatime,lowerdir=/systemvhd,upperdir=/system/rw/upper,workdir=/system/rw/work)
+none         on  /mnt/wslg/doc                                        type  overlay        (rw,relatime,lowerdir=/systemvhd,upperdir=/system/rw/upper,workdir=/system/rw/work)
+none         on  /tmp/.X11-unix                                       type  tmpfs          (ro,relatime)
+C:\          on  /mnt/c                                               type  9p             (rw,noatime,dirsync,aname=drvfs;path=C:\;uid=1000;gid=1000;symlinkroot=/mnt/,mmap,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+D:\          on  /mnt/d                                               type  9p             (rw,noatime,dirsync,aname=drvfs;path=D:\;uid=1000;gid=1000;symlinkroot=/mnt/,mmap,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+G:\          on  /mnt/g                                               type  9p             (rw,noatime,dirsync,aname=drvfs;path=G:\;uid=1000;gid=1000;symlinkroot=/mnt/,mmap,access=client,msize=65536,trans=fd,rfd=5,wfd=5)
+none         on  /run/user                                            type  tmpfs          (rw,relatime)
+cgroup       on  /sys/fs/cgroup/systemd                               type  cgroup         (rw,nosuid,nodev,noexec,relatime,xattr,name=systemd)
+hugetlbfs    on  /dev/hugepages                                       type  hugetlbfs      (rw,relatime,pagesize=2M)
+mqueue       on  /dev/mqueue                                          type  mqueue         (rw,nosuid,nodev,noexec,relatime)
+debugfs      on  /sys/kernel/debug                                    type  debugfs        (rw,nosuid,nodev,noexec,relatime)
+tracefs      on  /sys/kernel/tracing                                  type  tracefs        (rw,nosuid,nodev,noexec,relatime)
+fusectl      on  /sys/fs/fuse/connections                             type  fusectl        (rw,nosuid,nodev,noexec,relatime)
+none         on  /run/credentials/systemd-sysusers.service            type  ramfs          (ro,nosuid,nodev,noexec,relatime,mode=700)
+/dev/sdc     on  /snap                                                type  ext4           (rw,relatime,discard,errors=remount-ro,data=ordered)
+/dev/sdc     on  /var/snap/firefox/common/host-hunspell               type  ext4           (ro,noexec,noatime,discard,errors=remount-ro,data=ordered)
+snapfuse     on  /snap/bare/5                                         type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/cheat/4279                                     type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/core20/2318                                    type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/core20/2379                                    type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/core22/1612                                    type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/core22/1621                                    type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/firefox/4955                                   type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/firefox/5134                                   type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/gnome-42-2204/172                              type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/gnome-42-2204/176                              type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/gtk-common-themes/1535                         type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/lxd/24061                                      type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/lxd/29619                                      type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/snapd/21184                                    type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+snapfuse     on  /snap/snapd/21759                                    type  fuse.snapfuse  (ro,nodev,relatime,user_id=0,group_id=0,allow_other)
+none         on  /run/snapd/ns                                        type  tmpfs          (rw,nosuid,nodev,mode=755)
+nsfs         on  /run/snapd/ns/lxd.mnt                                type  nsfs           (rw)
+/dev/sdc     on  /var/lib/docker                                      type  ext4           (rw,relatime,discard,errors=remount-ro,data=ordered)
+
+==================== Network Interfaces and IP Addresses ====================
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 172.30.46.232/20 brd 172.30.47.255 scope global eth0
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+
+==================== Active Network Connections ====================
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:1883          0.0.0.0:*               LISTEN     
+tcp6       0      0 127.0.0.1:7474          :::*                    LISTEN     
+tcp6       0      0 127.0.0.1:7687          :::*                    LISTEN     
+tcp6       0      0 :::22                   :::*                    LISTEN     
+tcp6       0      0 ::1:1883                :::*                    LISTEN     
+udp        0      0 127.0.0.53:53           0.0.0.0:*                          
+udp        0      0 127.0.0.1:323           0.0.0.0:*                          
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                          
+udp        0      0 0.0.0.0:42394           0.0.0.0:*                          
+udp6       0      0 :::48182                :::*                               
+udp6       0      0 ::1:323                 :::*                               
+udp6       0      0 :::5353                 :::*                               
+
+==================== Running Processes (Top 10 by Memory Usage) ====================
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+neo4j       1358  1.1  5.4 8477120 436316 ?      Sl   18:51   0:32 /usr/lib/jvm/java-21-openjdk-amd64/bin/java -cp /var/lib/neo4j/plugins/*:/etc/neo4j/*:/usr/share/neo4j/lib/* -XX:+UseG1GC -XX:-OmitStackTraceInFastThrow -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+TrustFinalNonStaticFields -XX:+DisableExplicitGC -Djdk.nio.maxCachedBufferSize=1024 -Dio.netty.tryReflectionSetAccessible=true -Djdk.tls.ephemeralDHKeySize=2048 -Djdk.tls.rejectClientInitiatedRenegotiation=true -XX:FlightRecorderOptions=stackdepth=256 -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Dlog4j2.disable.jmx=true -Dfile.encoding=UTF-8 org.neo4j.server.CommunityEntryPoint --home-dir=/var/lib/neo4j --config-dir=/etc/neo4j --console-mode
+neo4j       1036  0.2  2.6 3665924 211016 ?      Ssl  18:51   0:08 /usr/bin/java -Xmx128m -classpath /usr/share/neo4j/lib/*:/usr/share/neo4j/etc:/usr/share/neo4j/repo/* -Dapp.name=neo4j -Dapp.pid=1036 -Dapp.repo=/usr/share/neo4j/repo -Dapp.home=/usr/share/neo4j -Dbasedir=/usr/share/neo4j org.neo4j.server.startup.Neo4jBoot console
+mongodb     1035  0.4  2.4 556084 197256 ?       Ssl  18:51   0:14 /usr/bin/mongod --config /etc/mongod.conf
+root        1034  0.0  1.0 2356584 81244 ?       Ssl  18:51   0:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root         439  0.0  0.6 2096684 52588 ?       Ssl  18:49   0:01 /usr/bin/containerd
+root         370  0.0  0.5 1985600 48052 ?       Ssl  18:49   0:01 /usr/lib/snapd/snapd
+root         435  0.0  0.2 115896 23144 ?        Ssl  18:49   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         365  0.0  0.2  38884 20760 ?        Ss   18:49   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root          63  0.0  0.2  48244 16844 ?        S<s  18:49   0:00 /lib/systemd/systemd-journald
+systemd+     357  0.0  0.1  25660 12708 ?        Ss   18:49   0:00 /lib/systemd/systemd-resolved
+
+==================== System Load ====================
+0.31 0.18 0.09 1/458 9600
+
+==================== Kernel Information ====================
+Linux Zelmoghazy 5.15.146.1-microsoft-standard-WSL2 #1 SMP Thu Jan 11 04:09:03 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+
+==================== Last 10 Syslog Entries ====================
+Oct 21 19:39:23 Zelmoghazy bash[9183]: WARNING: Configure node.cookie in /etc/emqx/emqx.conf or override from environment variable EMQX_NODE__COOKIE
+Oct 21 19:39:23 Zelmoghazy bash[9183]: WARNING: NOTE: Use the same cookie for all nodes in the cluster.
+Oct 21 19:39:24 Zelmoghazy emqx[9183]: EXEC: /usr/lib/emqx/erts-14.2.5.2/bin/erlexec -enable-feature maybe_expr -noinput -noshell +Bd -boot /usr/lib/emqx/releases/5.8.0/start -boot_var RELEASE_LIB /usr/lib/emqx/lib -boot_var ERTS_LIB_DIR /usr/lib/emqx/lib -mode embedded -config /var/lib/emqx/configs/app.2024.10.21.19.39.23.config -args_file /var/lib/emqx/configs/vm.2024.10.21.19.39.23.args -start_epmd false -epmd_module ekka_epmd -proto_dist ekka -- foreground -ekka_proto_dist inet_tcp -emqx_data_dir /var/lib/emqx
+Oct 21 19:39:26 Zelmoghazy bash[9183]: Failed to start listener tcp:default on 0.0.0.0:1883: {{shutdown,{failed_to_start_child,listener,eaddrinuse}},{child,undefined,{listener_sup,{'tcp:default',{{0,0,0,0},1883}}},{esockd_listener_sup,start_link,['tcp:default',{{0,0,0,0},1883}]},transient,false,infinity,supervisor,[esockd_listener_sup]}}.
+Oct 21 19:39:28 Zelmoghazy bash[9183]: Kernel pid terminated (application_controller) ("{application_start_failure,emqx,{bad_return,{{emqx_app,start,[normal,[]]},{'EXIT',{{failed_to_start,\"tcp:default(0.0.0.0:1883) : {shutdown,
+                                {failed_to_start_child,listener,eaddrinuse}}\"},[{emqx_listeners,'-foreach_listeners/1-fun-0-',2,[{file,\"emqx_listeners.erl\"},{line,836}]},{lists,foreach_1,2,[{file,\"lists.erl\"},{line,1686}]},{emqx_app,maybe_start_listeners,0,[{file,\"emqx_app.erl\"},{line,93}]},{emqx_app,start,2,[{file,\"emqx_app.erl\"},{line,46}]},{application_master,start_it_old,4,[{file,\"application_master.erl\"},{line,293}]}]}}}}}")
+Oct 21 19:39:28 Zelmoghazy bash[9183]: #015
+Oct 21 19:39:28 Zelmoghazy bash[9183]: Crash dump is being written to: /var/log/emqx/erl_crash.dump...done
+Oct 21 19:39:28 Zelmoghazy systemd[1]: emqx.service: Main process exited, code=exited, status=1/FAILURE
+Oct 21 19:39:28 Zelmoghazy systemd[1]: emqx.service: Failed with result 'exit-code'.
+Oct 21 19:39:49 Zelmoghazy systemd-resolved[357]: Clock change detected. Flushing caches.
+
+==================== Last 10 dmesg Entries ====================
+[    6.863490] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[    6.864194] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[    6.864880] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[    6.865704] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[    6.866395] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[    7.529090] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[   11.838467] WSL (2) ERROR: WaitForBootProcess:3335: /sbin/init failed to start within 10000
+[   11.838484] ms
+[   11.857884] WSL (2): Creating login session for zelmoghazy
+[   49.385614] hv_balloon: Max. dynamic memory size: 8128 MB
+
+==================== Firewall Status (ufw) ====================
+Status: inactive

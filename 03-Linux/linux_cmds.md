@@ -711,3 +711,115 @@ watch -n 1 "ps auxf"
 # run terminator with a command
 terminator -e 'btop; exec bash'
 ```
+
+```
+echo "Hello world" | xclip -sel clip
+```
+
+```
+xclip -o -sel clip
+```
+
+
+```
+!$	        # Expand last parameter of most recent command
+!*	        # Expand all parameters of most recent command
+!-n	        # Expand nth most recent command
+!n	        # Expand nth command in history
+!<command>	# Expand most recent invocation of command <command>
+
+!!	                # Execute last command again
+!!:s/<FROM>/<TO>/	# Replace first occurrence of <FROM> to <TO> in most recent command
+!!:gs/<FROM>/<TO>/	# Replace all occurrences of <FROM> to <TO> in most recent command
+!$:t	            # Expand only basename from last parameter of most recent command
+!$:h	            # Expand only directory from last parameter of most recent command
+
+
+
+!!:n	            Expand only nth token from most recent command (command is 0; first argument is 1)
+!^	                Expand first argument from most recent command
+!$	                Expand last token from most recent command
+!!:n-m	            Expand range of tokens from most recent command
+!!:n-$	            Expand nth token to last from most recent command
+```
+
+
+```
+# Replace all occurrences of a character in a file, and print the result:
+tr find_character replace_character < path/to/file
+
+# Replace all occurrences of a character from another command's output:
+echo text | tr find_character replace_character
+
+# Map each character of the first set to the corresponding character of the second set:
+tr 'abcd' 'jkmn' < path/to/file
+
+# Delete all occurrences of the specified set of characters from the input:
+tr -d 'input_characters' < path/to/file
+
+# Compress a series of identical characters to a single character:
+tr -s 'input_characters' < path/to/file
+
+# Translate the contents of a file to upper-case:
+tr "[:lower:]" "[:upper:]" < path/to/file
+
+# Strip out non-printable characters from a file:
+tr -cd "[:print:]" < path/to/file
+
+```
+
+
+```
+#Execute commands from a file in the current shell(no fork).
+source {{path/to/file}}
+
+```
+
+
+```
+# Set a new environment variable:
+export VARIABLE=value
+
+# Remove an environment variable:
+export -n VARIABLE
+
+# Mark a shell function for export:
+export -f FUNCTION_NAME
+
+# Append something to the PATH variable:
+export PATH=$PATH:path/to/append
+
+```
+
+```
+/dev/null is the null device it takes any input you want and throws it away. It can be used to suppress any output.
+
+command > /dev/null 2>&1 &
+```
+
+
+```
+# Get WiFi status (enabled / disabled)
+nmcli radio wifi
+
+# Enable / Disable WiFi
+nmcli radio wifi <on|off>
+
+# Show all available WiFi access points
+nmcli dev wifi list
+
+# Connect to a wireless access point - Parameters:
+#       <wiface> -- the name of your wireless interface
+#       <ssid> -- the SSID of the access point
+#       <pass> -- the WiFi password
+nmcli d wifi connect <ssid> password <pass> iface <wiface>
+
+# Show WiFi password and QR code
+nmcli dev wifi show
+
+# Show all available connections
+nmcli con
+
+# Get WiFi status (enabled / disabled)
+nmcli radio wifi
+```

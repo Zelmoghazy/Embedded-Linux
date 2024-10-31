@@ -45,6 +45,17 @@ class EnhancedString : public std::string
 
 };
 
+/* Return line without beginning or end whitespace */
+std::string trim(const std::string& str) {
+    const auto start = str.find_first_not_of(" \t\r\n");
+    // entire line is white space
+    if (start == std::string::npos){
+        return "";
+    } 
+    const auto end = str.find_last_not_of(" \t\r\n");
+    return str.substr(start, end - start + 1);
+}
+
 int main(void) 
 {
     // Construction and Initialization
@@ -87,6 +98,43 @@ int main(void)
     size_t pos = str.find("world");      // Find first occurrence, ret std::strong::npos if not found
     size_t rpos = str.rfind("l");        // Find last occurrence
     int result = str.compare("Hello");   // Compare strings
+
+
+    std::string str1 = "123ABC456";
+    size_t pos1 = str1.find_first_not_of("123456");
+    if (pos1 != std::string::npos) {
+        std::cout << "find_first_not_of: First character not in '123456' is at position: " << pos1 << '\n';
+        std::cout << "Character: " << str1[pos1] << '\n'; // Output: A
+    } else {
+        std::cout << "find_first_not_of: No character found that is not in '123456'.\n";
+    }
+
+    std::string str2 = "abcdef123";
+    size_t pos2 = str2.find_first_of("123");
+    if (pos2 != std::string::npos) {
+        std::cout << "find_first_of: First occurrence of any character in '123' is at position: " << pos2 << '\n';
+        std::cout << "Character: " << str2[pos2] << '\n'; // Output: 1
+    } else {
+        std::cout << "find_first_of: No character found in '123'.\n";
+    }
+
+    std::string str3 = "abc123abc";
+    size_t pos3 = str3.find_last_of("abc");
+    if (pos3 != std::string::npos) {
+        std::cout << "find_last_of: Last occurrence of any character in 'abc' is at position: " << pos3 << '\n';
+        std::cout << "Character: " << str3[pos3] << '\n'; // Output: c
+    } else {
+        std::cout << "find_last_of: No character found in 'abc'.\n";
+    }
+
+    std::string str4 = "abc123abc";
+    size_t pos4 = str4.find_last_not_of("abc");
+    if (pos4 != std::string::npos) {
+        std::cout << "find_last_not_of: Last character not in 'abc' is at position: " << pos4 << '\n';
+        std::cout << "Character: " << str4[pos4] << '\n'; // Output: 3
+    } else {
+        std::cout << "find_last_not_of: All characters are in 'abc'.\n";
+    }
 
     // Concatenation
     std::string s8 = s1 + s2;        // Concatenate strings
@@ -152,6 +200,13 @@ int main(void)
     estr.reverse();
 
     std::cout << estr << std::endl;
+
+    // String view 
+
+    std::string str{"foobar"};
+    std::string_view bar{str.c_str(), str.size()};
+    bar.remove_prefix(3);
+    assert(bar == "bar");
 
 
     return 0;
