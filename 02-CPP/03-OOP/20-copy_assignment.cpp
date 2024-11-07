@@ -5,6 +5,19 @@
 #include <ostream>
 
 
+/* 
+
+    copy constructors and copy assignment operators 
+        give you control over what it means to copy objects
+
+    Rule of Three :
+    a type must have all three if one is needed
+    1- copy constructor
+    2- copy assignment
+    3- destructor
+
+ */
+
 class String{
     private:
         char* str;
@@ -27,10 +40,9 @@ class String{
             strcpy(str,obj.str);
         }
 
-        // copy assignment 
         String &operator=(const String &obj)
         {
-            std::cout << "copy assignment\n";
+            std::cout << "assignment operator\n";
             // Handling self assignment
             if(this == &obj)
             {
@@ -38,38 +50,15 @@ class String{
             }
 
             delete[] this->str;
-            this->size = obj.size;
-
-            this->str = new char[size+1];
+            this->str = new char[obj.size+1];
             strcpy(this->str, obj.str) ;
             
             return *this;
         }
 
-        // move assignment 
-        String &operator=(String &&obj)
-        {
-            std::cout << "move assignment\n";
-            // Handling self assignment
-            if(this == &obj)
-            {
-                return *this;
-            }
-
-            delete[] this->str;
-            
-            this->str = obj.str;
-            this->size = obj.size;
-
-            obj.size = 0;
-            obj.str = nullptr;
-
-            return *this;
-        }
-
         void display()
         {
-            std::cout << str << ' ' << size << ' ' << this << std::endl;
+            std::cout << str << ' ' << size << std::endl;
         }
 
 };
@@ -85,17 +74,18 @@ int main(void)
 {
     String s1("Hello");
     String s2("world");
-    
-    // copy assignment
-    s1 = s2; 
 
-    // move assignment
-    s1 = std::move(s2);
+    s1 = s2;
 
     s1.display();
     s2.display();
 
-    std::cout << "Reached!" << std::endl;
+    // Problem !!
+    // first we delete then we take garbage
+    // and add it back -> wrong
+    s2 = s2;
+    s1.display();
+    s2.display();
 
     return 0;
 }

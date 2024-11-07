@@ -11,37 +11,7 @@
 
 
 
-/*
-    // (IPv4 only--see struct sockaddr_in6 for IPv6)
-    // in -> Internet
-    struct sockaddr_in {
-        short sin_family;           // AF_INET 
-        unsigned short sin_port;    // port number e.g. htons(3490) must be in Network Byte Order 
-        struct in_addr sin_addr;    // destination address
-        char sin_zero[8];           // should be memset to zeroes
-    }
 
-    struct in_addr {
-        unsigned long s_addr;       // load with inet_pton() (presentation to network) converts an IP address in numbers-and-dots notation into struct in_addr
-    };
-
-    ----------------------------------------------------------------------------
-
-    // (IPv6 only--see struct sockaddr_in and struct in_addr for IPv4)
-
-    struct sockaddr_in6 {
-        u_int16_t       sin6_family;   // address family, AF_INET6
-        u_int16_t       sin6_port;     // port number, Network Byte Order
-        u_int32_t       sin6_flowinfo; // IPv6 flow information
-        struct in6_addr sin6_addr;     // IPv6 address
-        u_int32_t       sin6_scope_id; // Scope ID
-    };
-
-    struct in6_addr {
-        unsigned char   s6_addr[16];   // IPv6 address
-    };
-
- */
 
 // 9. HTTP Server
 void http_server() 

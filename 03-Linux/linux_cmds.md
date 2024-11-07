@@ -6,6 +6,13 @@
 
 * All built in shell commands in bash
 
+
+```
+# - : for short name , -- : for long name
+ls -a
+ls --al
+```
+
 ```bash
 help
 ```
@@ -16,9 +23,12 @@ type cat
 ```     
 
 ```bash
-ls
-ls -l
+ls          # list everything in current directory excluding hidden files
+ls -l       # list in long format list (file type, permissions, # of hard links, owners, file size, last modify time, file name)
+
+# file names starting with a dot are hidden files
 ls -la      # list all including hidden in long format
+
 ls -lhs     # list with size in human readable format
 ls -RS      # list files recursively sorted by size(descending)
 ls -lt      # list recently modified
@@ -28,12 +38,13 @@ ls -F
 ```
 
 ```bash
-pwd         #print current directory
-cd  {path}    #change directory
-cd  ..
-cd
-cd -
-cd /
+pwd             # print current(working) directory
+cd  {path}      # change directory to another path
+cd  ..          # Go up to the parent of the current directory
+cd  ~           # ~ : home directory
+cd              # home directory of current user
+cd -            # Go to the previously chosen directory
+cd /            # Go to the root directory:
 
 pushd {path}    # switch to path and push it to a stack
 popd            # remove top directory from the stack and cd to it
@@ -42,17 +53,21 @@ dirs            # display directory stack
 
 ### External
 ```
-tree
+tree            # list a tree of files
 tldr
 
 echo "hello world" | xclip      # pipe output to clipboard
 ```
 
 ```
-mkdir folder1 folder2
-mkdir -p folder1/folder2
+mkdir folder1 folder2          # create directories
+mkdir -p folder1/folder2       # create nested directories
+
 # create two folders each containing two folders
 mkdir -p folder{1,2}/folder{3,4}
+
+# Create directories with specific permissions:
+mkdir -m rwxrw-r-- path/to/directory1 path/to/directory2 ...
 
 ```
 
@@ -120,6 +135,7 @@ cp -t {dest_dir} {file1} {file2}
 ```
 
 ```
+# used to move or rename
 mv src dest
 mv --force src dest
 mv --interactive src dest
@@ -161,6 +177,8 @@ date -d @1473305798
     * `?` : single character
     * `[]` : ranges
         * `ls file[1-4].txt`
+        * `ls file[1-37-9].txt`
+        * `ls file[abcd].txt`
     * `{}` : brace expansion
         * `echo file{1,2,3,4}.txt`
         * `echo file{1..4}.txt`
@@ -261,15 +279,24 @@ watch -n 1 "ps auxf"
 ```
 
 ```
-ps aux | awk '{print $11}'           # print the command column of ps aux
-ps aux | awk '/root/ {print $2}'     # Print the second column of the lines containing "root"   
-awk 'NR%3==1' {{path/to/file}}       #  Print every third line starting from the first line
-echo "input" | awk '{print $1"string"}' # append string to stdout
+ps aux | awk '{print $11}'                  # print the command column of ps aux
+ps aux | awk '/root/ {print $2}'            # Print the second column of the lines containing "root"   
+ls -la | awk '{print $9 ":" $5}'            # print the size of all files in current directory
+awk 'NR%3==1' {{path/to/file}}              #  Print every third line starting from the first line
+echo "input" | awk '{print $1"string"}'     # append string to stdout
 ```
 
 
-file type   User    Group   Other   
-d           rwx     rwx     rwx   
+file type           User    Group   Other   
+-------------------------------------------
+d(directory)        rwx     rwx     rwx   
+l(symbolic link)    rwx     rwx     rwx   
+b(block)            rwx     rwx     rwx   
+c(char)             rwx     rwx     rwx   
+p(pipe)             rwx     rwx     rwx   
+s(socket)           rwx     rwx     rwx   
+
+* minimum directory size = 4k
 
 ```bash
 # change mode
@@ -309,7 +336,7 @@ ctrl + _        # undo last executed action
 
 Alt+r           # Revert all changes to the current line
 
-ctrl+c          # Capitalise the character under the cursor and move to the end of the current smallword
+Alt+c          # Capitalise the character under the cursor and move to the end of the current smallword
 
 Alt-Ctrl-e:     #Expand the current line (expand aliases for example or enviroment vars)
  
@@ -822,4 +849,57 @@ nmcli con
 
 # Get WiFi status (enabled / disabled)
 nmcli radio wifi
+```
+
+```
+# Type a message, with a 500ms delay for each letter:
+xdotool type --delay 500 "Hello world"
+
+# Press the enter key:
+xdotool key KP_Enter
+```
+
+```
+# To see running processes:
+systemctl
+
+# To check the status of a service:
+systemctl status foo.service
+
+# To start/restart/stop a service:
+systemctl start/restart/stop foo.service
+
+# To reload a service's configuration:
+systemctl reload foo.service
+
+# To edit a service's configuration:
+systemctl edit foo.service
+
+# To reload systemd manager configuration:
+systemctl daemon-reload
+
+# To enable a service to startup on boot:
+systemctl enable foo.service
+
+# To disable a service to startup on boot:
+systemctl disable foo.service
+
+systemctl list-dependencies
+```
+
+
+```
+# To see log items from the most recent boot:
+journalctl -b
+
+# To to see only kernal messages, add -b for at the most recent boot:
+journalctl -k
+
+# To get the log entries for a service since boot:
+journalctl -b -u foo.service
+```
+
+```
+## Get first 10 errors only (very useful)
+make 2>&1 >/dev/null | grep "error" | head
 ```

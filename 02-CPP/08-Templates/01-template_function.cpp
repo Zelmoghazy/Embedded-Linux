@@ -13,9 +13,9 @@ int main(void)
     double  doubleResult    = add(5.5, 3.2);        // T is deduced to be double
     float   floatResult     = add(3.3f, 4.4f);      // T is deduced to be float
 
-    cout << "intResult: " << intResult << endl;
-    cout << "doubleResult: " << doubleResult << endl;
-    cout << "floatResult: " << floatResult << endl;
+    cout << "intResult: "       << intResult    << endl;
+    cout << "doubleResult: "    << doubleResult << endl;
+    cout << "floatResult: "     << floatResult  << endl;
 
     return 0;
 }

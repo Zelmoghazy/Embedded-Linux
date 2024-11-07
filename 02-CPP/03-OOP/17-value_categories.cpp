@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ostream>
 
+
 int& fun()
 {
     static int a = 5;

@@ -5,13 +5,8 @@
 #include <ostream>
 
 
-/* 
-    Rule of Three :
-    a type must have all three if one is needed
-    1- copy constructor
-    2- copy assignment
-    3- destructor
-
+/*
+    move constructors and move assignment operators offer control over the semantics of moving.
  */
 
 class String{
@@ -36,9 +31,10 @@ class String{
             strcpy(str,obj.str);
         }
 
+        // copy assignment 
         String &operator=(const String &obj)
         {
-            std::cout << "assignment operator\n";
+            std::cout << "copy assignment\n";
             // Handling self assignment
             if(this == &obj)
             {
@@ -46,15 +42,38 @@ class String{
             }
 
             delete[] this->str;
-            this->str = new char[obj.size+1];
+            this->size = obj.size;
+
+            this->str = new char[size+1];
             strcpy(this->str, obj.str) ;
             
             return *this;
         }
 
+        // move assignment 
+        String &operator=(String &&obj)
+        {
+            std::cout << "move assignment\n";
+            // Handling self assignment
+            if(this == &obj)
+            {
+                return *this;
+            }
+
+            delete[] this->str;
+            
+            this->str = obj.str;
+            this->size = obj.size;
+
+            obj.size = 0;
+            obj.str = nullptr;
+
+            return *this;
+        }
+
         void display()
         {
-            std::cout << str << ' ' << size << std::endl;
+            std::cout << str << ' ' << size << ' ' << this << std::endl;
         }
 
 };
@@ -70,18 +89,17 @@ int main(void)
 {
     String s1("Hello");
     String s2("world");
+    
+    // copy assignment
+    s1 = s2; 
 
-    s1 = s2;
+    // move assignment
+    s1 = std::move(s2);
 
     s1.display();
     s2.display();
 
-    // Problem !!
-    // first we delete then we take garbage
-    // and add it back -> wrong
-    s2 = s2;
-    s1.display();
-    s2.display();
+    std::cout << "Reached!" << std::endl;
 
     return 0;
 }

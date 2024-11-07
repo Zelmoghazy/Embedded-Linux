@@ -6,6 +6,9 @@
 
 
 /* 
+    copy constructors and copy assignment operators 
+    give you control over what it means to copy objects
+
     The rule of 3 in cpp
         - if a class has a destructor, a copy/move constructor 
           or an assignment(move) operator, it should have all three

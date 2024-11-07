@@ -8,6 +8,9 @@
 
 
 /*
+    move constructors and move assignment operators
+    offer control over the semantics of moving.
+
     Compile using -fno-elide-constructors
     and -std=c++14
  */
@@ -34,7 +37,8 @@ class String{
         }
 
         // copy constructor
-        String (const String &obj){
+        String (const String &obj)
+        {
             size = obj.size;
             str = new char[size+1];
             strcpy(str,obj.str);
@@ -47,6 +51,8 @@ class String{
             initial parameter that is a reference to the class type.
             Differently from the copy constructor, the reference parameter 
             in the move constructor is an rvalue reference. 
+
+            - not const because its going to be modifed (destroying the resource)
          */
         String (String &&obj){
             size = obj.size;

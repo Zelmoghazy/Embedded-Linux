@@ -2,16 +2,42 @@
 #include <ostream>
 #include <utility>
 
+/* 
+    Move semantics
+        - makes it possible for compilers to replace expensive copying
+          operations with less expensive moves. 
+        - allows you to move the contents of the container
+          the original container becomes empty afterwards
+
+        - copy: point at the same memory location
+        - move : point at the same memory location and set the original ptr to nullptr
+
+        -> move denotes giving up ownership of an object , copy doesnt
+           a very important thing to consider is the destructor of original object when moving
+    
+    rvalue references
+        new type used for move semantic , denoted by &&
+        signifies that we can move ownership of object
+
+
+    - std::move unconditionally casts its argument to an rvalue, 
+      while std::forward performs this cast only if a particular condition is fulfilled.
+      its guaranteed that std::move truly returns an rvalue reference
+
+    - rvalues are candidates for moving, so applying std::move to an object
+      tells the compiler that the object is eligible to be moved from. 
+      That’s why std::move has the name it does: to make it easy to designate objects that may be moved from.
+ */
+
+
 void fun(const int &x)
 {
 }
 
 int main(void)
 {
-    int y = 10;
-    // type category of x is lvalue reference
-    // its an alias to lvalue
-    int &x = y;
+    int y = 10;     // y is an lvalue
+    int &x = y;     // x is a lvalue reference (alias to lvalue)
 
     std::cout << y <<std::endl;
     std::cout << x <<std::endl;
@@ -33,12 +59,16 @@ int main(void)
     /* ---------------------------------- */
 
     /* 
-        An rvalue reference is a reference that must be bound to an rvalue.
-        An rvalue reference is obtained by using && rather than &.
-        They have an important property that they may be bound only to an object that is about to be destroyed.
-        As a result, we are free to “move” resources from an rvalue reference to another object.
+        - An rvalue reference is a reference that must be bound to an rvalue.
+        - An rvalue reference is obtained by using && rather than &.
+        - They have an important property that they may be bound only 
+          to an object that is about to be destroyed.
 
-        A variable is an lvalue; we cannot directly bind an rvalue reference to a variable even if that variable was defined as an rvalue reference type.
+        - As a result, we are free to “move” resources from an rvalue 
+          reference to another object.
+
+        - A variable is an lvalue; we cannot directly bind an rvalue reference 
+          to a variable even if that variable was defined as an rvalue reference type.
      */
 
     // type category of rvalueref is a right value reference

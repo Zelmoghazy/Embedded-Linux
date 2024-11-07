@@ -59,7 +59,7 @@ constexpr double convert(double value, std::string_view from_unit, std::string_v
 struct Example {
     int member = 0;
 
-    // const functions doesnt modify the object
+    // const functions doesnt modify the object equivalent to foo(const *this)
     void foo() const {
         // member = 15;  // Error!
     }
@@ -74,6 +74,27 @@ void const_func(int const &a)
 {
     std::cout << a << std::endl;
 }
+
+
+class Circle {
+public:
+    /* 
+        Any constexpr member variable must be static.
+        as Member variables of functions are not available
+        until an instance of that class is created
+        and constepxr means 'This is available at compile time'.
+     */
+    static constexpr double pi = 3.14159;  // constexpr static member
+
+    constexpr Circle(double radius) : radius_(radius) {}
+
+    constexpr double area() const {  // constexpr member function
+        return pi * radius_ * radius_;
+    }
+
+private:
+    double radius_;
+};
 
 
 int main (void)
@@ -131,9 +152,9 @@ int main (void)
     /* -------------------------------------- */
     int num; 
     std::cin >> num;
-    const int const_var2 = num;          // allowed
+    const int const_var3 = num;          // allowed
     // constexpr int const_expr2 = num;  // error must be initialized by constant
-    std::cout << const_var2 << std::endl;
+    std::cout << const_var3 << std::endl;
 
     /* -------------------------------------- */
 
