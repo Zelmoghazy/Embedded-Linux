@@ -1,27 +1,141 @@
- ## File and Directory management
+## Virtual Terminals
 
-* command type
-    * built in shell command
-    * executable
+*  move between virtual terminals
+
+```
+ctrl + alt + f1-7
+```
+
+## all pseudo terminals
+
+```
+ls /dev/pts/*
+```
+
+```
+tty     # which term am I
+```
+
+```
+screen -S session_name      # start a new named screen session
+screen -r session_name      # reattach to an open screen
+
+tmux
+```
+
+## Shell
+* sh : bourne SHell (written by Stephen Bourne)
+* bash : Bourne Again SHell
+
+```
+echo $0             # check what shell you are currently using
+echo $SHELL         # the default shell.
+```
+
+* Login Shell startup commands
+
+```
+~/.profile  # User specific
+
+# which internally calls internally calls
+~/.bashrc
+
+```
+
+```
+# Execute commands from a file in the current shell(no fork).
+source {{path/to/file}}
+. {{path/to/file}}
+
+source ~/.bashrc        # force a bashrc execution in current shell
+
+```
+
+* Command Categories
+    * built in shell command {`cd`, `pwd`, etc.}
+    * executable called by the shell program
+    * Alias to another command
+    * Shell functions
+
 
 * All built in shell commands in bash
 
-
-```
-# - : for short name , -- : for long name
-ls -a
-ls --al
-```
-
 ```bash
-help
+help        # get builtin commands list
+help cd     # get help of a builtin command
 ```
+* Identify the category of the command
 
 ```bash
 type cd
 type cat
 ```     
 
+* bash shortcuts
+
+```
+ctrl + a        # start of line 
+ctrl + e        # end of line
+ctrl + d        # delete highlighted letter
+ctrl + w        # delete word to left of cursor
+alt  + d        # delete word to right of cursor
+ctrl + k        # delete to the end
+ctrl + u        # delete to beginning
+
+ctrl + xx       # jump between saved locations
+
+ctrl + r        # reverse search
+
+ctrl + _        # undo last executed action
+
+alt+r           # Revert all changes to the current line
+
+alt+c          # Capitalise the character under the cursor and move to the end of the current smallword
+
+alt+ctrl+e     # Expand the current line (expand aliases for example or enviroment vars)
+ 
+```
+
+```
+_$                           # last argument
+history                      # all previous commands
+history | awk '{print $2}'
+!!                           # execute last command
+!122                         # execute command 122 from history
+!rm                          # execute last rm command witht the previous args
+!<command>!*                 # run command with all arguments from last command
+!<command>!$                 # run command with only last argument from the last command
+
+!$         # An alias for the last bigword of the previous command.
+!^         # An alias for the first bigword of the previous command.
+!*         # An alias for the previous command without the last bigword.
+```
+
+```
+script logfile.log  # Start recording terminal session in a given file
+exit                # Stop recording
+
+# Append to an existing file:
+script -a logfile.log
+
+# Execute quietly without start and done messages:
+script -q logfile.log
+
+# put timestamp infront of each command
+script -t logfile.log
+
+# flush after each command
+script -f logfile.log
+
+```
+
+## File and Directory management
+
+```
+# - : for short name , -- : for long name
+ls -a
+ls --all
+```
 ```bash
 ls          # list everything in current directory excluding hidden files
 ls -l       # list in long format list (file type, permissions, # of hard links, owners, file size, last modify time, file name)
@@ -35,16 +149,21 @@ ls -lt      # list recently modified
 ls -1       # one file per line
 ls -d */    # only directories
 ls -F
+
+ls -i       # show inode number
 ```
 
+### Navigation commands
+
 ```bash
-pwd             # print current(working) directory
-cd  {path}      # change directory to another path
-cd  ..          # Go up to the parent of the current directory
-cd  ~           # ~ : home directory
-cd              # home directory of current user
-cd -            # Go to the previously chosen directory
-cd /            # Go to the root directory:
+pwd            # print current(working) directory
+
+cd {path}      # change directory to another path
+cd ..          # Go up to the parent of the current directory
+cd ~           # ~ : home directory
+cd             # home directory of current user
+cd -           # Go to the previously chosen directory
+cd /           # Go to the root directory:
 
 pushd {path}    # switch to path and push it to a stack
 popd            # remove top directory from the stack and cd to it
@@ -79,20 +198,22 @@ touch filename
 alias word=command
 alias                   # list all aliases
 alias word              # view command related to an alias
+```
 
+```
 echo "alias mygrep='grep -r -n -i -C2'" >> ~/.bashrc        # set alias
 source ~/.bashrc
 ```
 
 ```
 echo "Text $PWD $PS1 $SHELL $TERM $PATH $HOSTTYPE"
-echo -e #enable special characters
-echo $?   #exit status of las executed command
+
+echo -e         # enable special characters
+echo $?         # exit status of las executed command
 ```
 ```
 printenv
 ```
-
 
 ```
 rm 
@@ -102,13 +223,33 @@ rm -v # print info
 rm -r # remove directories recursively
 ```
 
+```
+man <command>             # read manual pages
+manpath
+man <n> <command>         # sections
+* sections :
+    * 1 - commands
+    * 2 - system calls
+    * 3 - C library functions
+    * 4 - special filenames 
+    * 5 - file formats  for linux files
+    * 6 - games and things like screen savers
+    * 7 - word processing packages & Misc
+    * 8 - System adminstration commands
+
+whatis <command>          # search man page titles by keywords
+apropos <keyword>         # search man pages by keywords same as man -k <keyword>
+
+info <command>            # read info pages
+```
+
 
 ```bash
 cat file
-cat -n file 
-cat -e file             # to check for trailing white space
+cat -n file             # number output lines
+cat -e file             # to check for trailing white space an other nonprinting chars
 cat -t file             # to check for tabs
-cat file1 file2 > file
+cat file1 file2 > file  # concat outputs to a single file
 cat - > file            # from stdin to file (ctrl+d to exit)
 
 head -n2 file
@@ -116,9 +257,7 @@ tail -n2 file
 
 tail -f file            #  output appended data as the file grows;
 
-
 more file               # like man pages
-
 
 less file
     /string         # search for a string (press n/N to go to next or previous)
@@ -137,10 +276,11 @@ cp -t {dest_dir} {file1} {file2}
 ```
 # used to move or rename
 mv src dest
-mv --force src dest
-mv --interactive src dest
-mv --no-clobber src dest
+mv -i src dest        # Prompt for confirmation before overwriting existing files
+mv -f src dest        # Do not prompt for confirmation before overwriting existing files  
+mv -n src dest        # Do not overwrite existing files 
 ```
+
 ```
 which exec
 whereis exec
@@ -158,20 +298,74 @@ wc --max-line-length {{path/to/file}}
 date +%c
 date +%s
 date -d @1473305798
+
+cal
+cal 2011
+ncal
 ```
+
+
+```
+bc      # basic calculator
+```
+
+```
+sleep 1     #delay for 1 s
+```
+
+---
+
+### Sequential commands
+
+* Sequential commands just run after each other, they have independent input and output
+
+```
+<first_command>;<second_command>;<third_command>
+```
+
+### Conditional commands
+
+1- Oring (`||`) : Second command will only execute if the first returns failure
+
+```
+cat file.txt || echo "File Not found!"
+```
+
+2- Anding (`&&`) : Second command will only execute if the first returns successfully
+
+```
+mkdir dir1 && cd dir1
+```
+
+### Command Loops
+
+```
+for file in *.txt do mv -v $file $file.old done
+```
+### Command argument expansion
+* `~` : path of user home folder
+* `${}` : evaluate shell or enviroment variables
+* `$(())` : evaluate an arithmetic expansion
+* `{}`: brace expansion repeat for every element in set
+
+### Command Argument Quoting
+* `""` : protect strings, from command substitution, from arithmetic expansion but doesnt stop variable retrieval
+* `''` : protect everything even variable retrieval
+* `` or  `$()` : evaluate commands inside commands/strings
 
 
 ---
 
-
 ## controls
 
 * Redirection
-    * `>`  : redirect stdout
+    * `>`, `1>` : redirect stdout
     * `2>` : redirect stderr
     * `<`
 * piping 
-    * '|'
+    * `|` : mechanism in linux kernel that is used to enable one process to send information to the other processes
+    * `tee` : Read from stdin and pipe to stdout and files (or commands)
+    * `yes` : commonly used to answer yes to every prompt by install commands (`yes | sudo apt-get install {{program}}`)
 * wild cards
     * `*` : zero or more characters
     * `?` : single character
@@ -189,20 +383,46 @@ stdout -> /proc/self/fd/1
 stderr -> /proc/self/fd/2
 
 ```
+command >file1 2>file2              # output to file1 and error to file2
+
+command >file 2>&1                  # output both to a file and overwrite
+command &>file
+
+command >>file 2>>&1                # output both to a file and append
+command &>>file
+
+command <file                       # command input is read from a file
+
+comman1 | command2 | command3       # pipe output of each command to the input of another
+
 echo "hello world"  >  test.txt     # redirect stdout overwriting file
 echo "hello world2" >> test.txt     # append stdout to file
 
+cat file1 file2 > combined.txt
+
 echo "alias mygrep='grep -r -n -i -C2'" >> ~/.bashrc
 
-wrong_cmd 2> test.txt               # redirect stderr
+make 2> log                         # errors only go to a file
+wrong_cmd 2>> test.txt              # redirect stderr and append
 
-ls -l | wc -l                       # pipe output of ls to input of  wc
+wc -l < file                        # count number of lines in a file
 
-strace ls |& grep write             # pipe both stdout and stderr
+ls -l | wc -l                       # pipe output of ls to input of wc
+cat file | grep "error"
+
+strace ls |& grep "write"           +# pipe both stdout and stderr
+
+# Print stdin to the terminal, and also pipe it into another program for further processing:
+echo "example" | tee /dev/tty | xargs printf "[%s]"
 
 ```
 
-
+```
+/dev/zero       # input device generating infinite stream of zeroes
+/dev/random     # input device to generate random byte, it may block
+/dev/urandom    # generate quasi-random bytes, doesnt block
+/dev/full       # simulate a full file for testing
+```
 
 * run in background
 ```
@@ -269,6 +489,14 @@ du -ch *.mp4
 sort --numeric-sort --reverse file
 sort --ignore-case
 sort --unique
+
+sort < file > sorted_file
+
+```
+
+```
+# spell checker
+spell file.txt
 ```
 
 
@@ -319,40 +547,7 @@ watch {command}                         # repeatedly run a command and show resu
 watch -n 60 {command}                   # run command every 60 seconds
 ```
 
-```
-ctrl + a        # start of line 
-ctrl + e        # end of line
-ctrl + d        # delete highlighted letter
-ctrl + w        # delete word to left of cursor
-alt  + d        # delete word to right of cursor
-ctrl + k        # delete to the end
-ctrl + u        # delete to beginning
 
-ctrl + xx       # jump between saved locations
-
-ctrl + r        # reverse search
-
-ctrl + _        # undo last executed action
-
-Alt+r           # Revert all changes to the current line
-
-Alt+c          # Capitalise the character under the cursor and move to the end of the current smallword
-
-Alt-Ctrl-e:     #Expand the current line (expand aliases for example or enviroment vars)
- 
-```
-
-```
-_$          #last argument
-history     # all previous commands
-history | awk '{print $2}'
-!!          # execute last command
-!122        # execute comman 122 from history
-
-!$: An alias for the last bigword of the previous command.
-!^: An alias for the first bigword of the previous command.
-!*: An alias for the previous command without the last bigword.
-```
 
 ## File Compression and Archiving
 
@@ -406,26 +601,26 @@ stat {file}         # properties about a specific file such as size, permissions
 ### System Information
 
 ```
+hostname        # get the machine name
 
 uname           # Print kernel name
-uname -m -p     # Print system architecture and processor information:
+uname -m -p     # Print system architecture and processor information
 uname -s -r -v  # Print kernel name, kernel release and kernel version
 uname -n        # Print system hostname
-uname -a        # - Print all available system information:
+uname -a        # Print all available system information
 ```
-
 
 ```
 free -h # Display memory in human-readable units:
 ```
 
 ```
-
 df  #  Display all filesystems and their disk usage using 512-byte units:
 ```
 
 ```
-uptime --pretty # Show only the amount of time the system has been booted for:
+uptime              # get system uptime
+uptime --pretty     # Show only the amount of time the system has been booted for:
 ```
 
 ```
@@ -440,6 +635,7 @@ cat /etc/hostname
 whoami
 cat /etc/lsb-release
 cat /etc/os-release
+uname -a
 cat /proc/meminfo
 
 ```
@@ -687,6 +883,8 @@ ldd path/to/binary
 ## Symbolic Link
 
 ```
+# always use absolute paths for the file to link to when creating symbolic links
+
 # To create a symlink:
 ln -s <source-location> <symlink-location>
 
@@ -712,10 +910,11 @@ dirname path/to/file_or_directory
 # Calculate a sine/cosine/arctangent/natural logarithm/exponential function using `mathlib`:
 echo 's|c|a|l|e(1)' | bc --mathlib
 ```
+
 ```
 pkill -KILL -u $USER
 sudo shutdown -h now
-sudo reboot
+sudo reboot now
 ```
 
 ```
@@ -796,11 +995,7 @@ tr -cd "[:print:]" < path/to/file
 ```
 
 
-```
-#Execute commands from a file in the current shell(no fork).
-source {{path/to/file}}
 
-```
 
 
 ```
@@ -897,9 +1092,107 @@ journalctl -k
 
 # To get the log entries for a service since boot:
 journalctl -b -u foo.service
+
+journalctl --lines 20 --follow
 ```
 
 ```
 ## Get first 10 errors only (very useful)
 make 2>&1 >/dev/null | grep "error" | head
+```
+
+--- 
+
+```
+# Generate a new SSH key pair (using RSA algorithm, 4096 bits for strong security)
+ssh-keygen -t rsa -b 4096
+
+# When prompted:
+# 1. Enter a file location (or press Enter for default ~/.ssh/id_rsa)
+# 2. Enter a passphrase (recommended for security) or press Enter twice for no passphrase
+
+# Display your public key
+cat ~/.ssh/id_rsa.pub
+
+# Replace username and server_address with your values
+ssh-copy-id username@server_address
+
+## graphical apps
+ssh -X hostname
+```
+
+
+```
+
+ - Show current host name:
+   hostname
+
+ - Show the network address of the host name:
+   hostname -i
+
+ - Show all network addresses of the host:
+   hostname -I
+
+ - Show the FQDN (Fully Qualified Domain Name):
+   hostname --fqdn
+
+ - Set current host name:
+   hostname new_hostname
+```
+
+## File transfer
+
+```
+ - Copy a local file to a remote host:
+   scp path/to/local_file remote_host:path/to/remote_file
+
+ - Use a specific port when connecting to the remote host:
+   scp -P port path/to/local_file remote_host:path/to/remote_file
+
+ - Copy a file from a remote host to a local directory:
+   scp remote_host:path/to/remote_file path/to/local_directory
+
+ - Recursively copy the contents of a directory from a remote host to a local directory:
+   scp -r remote_host:path/to/remote_directory path/to/local_directory
+
+ - Copy a file between two remote hosts transferring through the local host:
+   scp -3 host1:path/to/remote_file host2:path/to/remote_directory
+
+ - Use a specific username when connecting to the remote host:
+   scp path/to/local_file remote_username@remote_host:path/to/remote_directory
+
+ - Use a specific SSH private key for authentication with the remote host:
+   scp -i ~/.ssh/private_key path/to/local_file remote_host:path/to/remote_file
+
+ - Use a specific proxy when connecting to the remote host:
+   scp -J proxy_username@proxy_host path/to/local_file remote_host:path/to/remote_file
+```
+
+
+---
+```
+Debian package manager.
+Some subcommands such as deb have their own usage documentation.
+For equivalent commands in other package managers
+
+ - Install a package:
+   dpkg -i path/to/file.deb
+
+ - Remove a package:
+   dpkg -r package
+
+ - List installed packages:
+   dpkg -l pattern
+
+ - List a package's contents:
+   dpkg -L package
+
+ - List contents of a local package file:
+   dpkg -c path/to/file.deb
+
+ - Find out which package owns a file:
+   dpkg -S path/to/file
+
+ - Purge an installed or already removed package, including configuration:
+   dpkg -P package
 ```

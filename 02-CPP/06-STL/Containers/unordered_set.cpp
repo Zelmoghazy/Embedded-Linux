@@ -14,6 +14,13 @@ int main() {
     // Attempting to insert a duplicate (won't be added)
     mySet.insert(20);
 
+    auto result = mySet.insert(10);
+    if (result.second) {
+        std::cout << "Inserted 10 successfully.\n";
+    } else {
+        std::cout << "10 is a duplicate.\n";
+    }
+
     // Displaying the elements
     std::cout << "Elements in mySet: ";
     for (const int& elem : mySet) {
