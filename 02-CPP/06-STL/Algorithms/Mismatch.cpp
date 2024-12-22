@@ -8,7 +8,8 @@
 #include <iostream>
 #include <numeric>
 
-void printVector(const std::vector<int>& vec, const char *message) {
+void printVector(const std::vector<int>& vec, const char *message) 
+{
     std::cout << message << " ";
     for (int elem : vec) {
         std::cout << elem << " ";

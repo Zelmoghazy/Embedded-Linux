@@ -2,9 +2,9 @@
 #include <tuple>
 #include <string>
 
-
 // Function that returns a tuple
-std::tuple<int, double, std::string> getPersonInfo() {
+std::tuple<int, double, std::string> getPersonInfo() 
+{
     return std::make_tuple(25, 175.5, "John Doe");
 }
 
@@ -31,6 +31,8 @@ int main(void)
     std::string name;
 
     std::tie(age, height, name) = getPersonInfo();
+
+    // auto [a, b, c] = getPersonInfo();
 
     // Output the unpacked values
     std::cout << "Age: "    << age      << std::endl;

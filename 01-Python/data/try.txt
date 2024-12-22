@@ -1,0 +1,4 @@
+Slaves & Masters:
+Slaves contain a list of hosts, one per line, that are needed to host DataNode and TaskTracker servers. The Masters contain a list of hosts, one per line, that are required to host secondary NameNode servers. The Masters file informs about the Secondary NameNode location to Hadoop daemon. The ‘Masters’ file at Master server contains a hostname, Secondary Name Node servers.
+
+The Hadoop-env.sh, core-ite.xml, hdfs-site.xml, mapred-site.xml, Masters and Slaves are all available under ‘conf’ directory of Hadoop installation directory.

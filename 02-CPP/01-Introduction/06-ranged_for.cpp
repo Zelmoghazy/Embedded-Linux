@@ -19,10 +19,22 @@ int main(void)
         std::cout << val << '\n';
     }
 
+    // equivalent to 
+    for(auto i = std::begin(a); i!= std::end(a); i++){
+        std::cout << *i << '\n';
+    }
+
     std::vector<int> numbers = {1, 2, 3, 4, 5};
 
     for (int number : numbers) {
         std::cout << number << '\n';
+    }
+
+    // equivalent to 
+
+    for(auto it = std::begin(numbers); it != std::end(numbers); it++)
+    {
+        std::cout << *it << '\n';
     }
 
     return 0;

@@ -1,12 +1,12 @@
 ## Virtual Terminals
 
-*  move between virtual terminals
+*  Move between virtual terminals
 
 ```
 ctrl + alt + f1-7
 ```
 
-## all pseudo terminals
+## All pseudo terminals
 
 ```
 ls /dev/pts/*
@@ -37,13 +37,14 @@ echo $SHELL         # the default shell.
 ```
 ~/.profile  # User specific
 
-# which internally calls internally calls
+# which internally calls 
 ~/.bashrc
 
 ```
 
 ```
 # Execute commands from a file in the current shell(no fork).
+
 source {{path/to/file}}
 . {{path/to/file}}
 
@@ -53,7 +54,7 @@ source ~/.bashrc        # force a bashrc execution in current shell
 
 * Command Categories
     * built in shell command {`cd`, `pwd`, etc.}
-    * executable called by the shell program
+    * Executable called by the shell program
     * Alias to another command
     * Shell functions
 
@@ -69,6 +70,29 @@ help cd     # get help of a builtin command
 ```bash
 type cd
 type cat
+```
+
+* To get more information
+```
+man <command>             # read manual pages
+manpath
+man <n> <command>         # sections
+* sections :
+    * 1 - commands
+    * 2 - system calls
+    * 3 - C library functions
+    * 4 - special filenames 
+    * 5 - file formats  for linux files
+    * 6 - games and things like screen savers
+    * 7 - word processing packages & Misc
+    * 8 - System adminstration commands
+
+whatis <command>          # search man page titles by keywords
+apropos <keyword>         # search man pages by keywords same as man -k <keyword>
+
+info <command>            # read info pages
+
+tldr <cmd>                # common uses for commands
 ```     
 
 * bash shortcuts
@@ -112,6 +136,28 @@ history | awk '{print $2}'
 ```
 
 ```
+!$	        # Expand last parameter of most recent command
+!*	        # Expand all parameters of most recent command
+!-n	        # Expand nth most recent command
+!n	        # Expand nth command in history
+!<command>	# Expand most recent invocation of command <command>
+
+!!	                # Execute last command again
+!!:s/<FROM>/<TO>/	# Replace first occurrence of <FROM> to <TO> in most recent command
+!!:gs/<FROM>/<TO>/	# Replace all occurrences of <FROM> to <TO> in most recent command
+!$:t	            # Expand only basename from last parameter of most recent command
+!$:h	            # Expand only directory from last parameter of most recent command
+
+
+!!:n	            Expand only nth token from most recent command (command is 0; first argument is 1)
+!^	                Expand first argument from most recent command
+!$	                Expand last token from most recent command
+!!:n-m	            Expand range of tokens from most recent command
+!!:n-$	            Expand nth token to last from most recent command
+```
+
+
+```
 script logfile.log  # Start recording terminal session in a given file
 exit                # Stop recording
 
@@ -128,192 +174,35 @@ script -t logfile.log
 script -f logfile.log
 
 ```
-
-## File and Directory management
-
-```
-# - : for short name , -- : for long name
-ls -a
-ls --all
-```
-```bash
-ls          # list everything in current directory excluding hidden files
-ls -l       # list in long format list (file type, permissions, # of hard links, owners, file size, last modify time, file name)
-
-# file names starting with a dot are hidden files
-ls -la      # list all including hidden in long format
-
-ls -lhs     # list with size in human readable format
-ls -RS      # list files recursively sorted by size(descending)
-ls -lt      # list recently modified
-ls -1       # one file per line
-ls -d */    # only directories
-ls -F
-
-ls -i       # show inode number
-```
-
-### Navigation commands
-
-```bash
-pwd            # print current(working) directory
-
-cd {path}      # change directory to another path
-cd ..          # Go up to the parent of the current directory
-cd ~           # ~ : home directory
-cd             # home directory of current user
-cd -           # Go to the previously chosen directory
-cd /           # Go to the root directory:
-
-pushd {path}    # switch to path and push it to a stack
-popd            # remove top directory from the stack and cd to it
-dirs            # display directory stack
-```
-
-### External
-```
-tree            # list a tree of files
-tldr
-
-echo "hello world" | xclip      # pipe output to clipboard
-```
+* Enviroment Variables
 
 ```
-mkdir folder1 folder2          # create directories
-mkdir -p folder1/folder2       # create nested directories
+# Display the names and values of shell variables:
+set
 
-# create two folders each containing two folders
-mkdir -p folder{1,2}/folder{3,4}
-
-# Create directories with specific permissions:
-mkdir -m rwxrw-r-- path/to/directory1 path/to/directory2 ...
-
-```
-
-```bash
-touch filename
-```
-
-```bash
-alias word=command
-alias                   # list all aliases
-alias word              # view command related to an alias
-```
-
-```
-echo "alias mygrep='grep -r -n -i -C2'" >> ~/.bashrc        # set alias
-source ~/.bashrc
-```
-
-```
-echo "Text $PWD $PS1 $SHELL $TERM $PATH $HOSTTYPE"
-
-echo -e         # enable special characters
-echo $?         # exit status of las executed command
-```
-```
+# Display key-value pairs of all environment variables:
 printenv
-```
 
+# Display the value of a specific variable:
+printenv HOME
 ```
-rm 
-rm -f # ignore if doesnt exist
-rm -i # ask before removing
-rm -v # print info
-rm -r # remove directories recursively
-```
-
-```
-man <command>             # read manual pages
-manpath
-man <n> <command>         # sections
-* sections :
-    * 1 - commands
-    * 2 - system calls
-    * 3 - C library functions
-    * 4 - special filenames 
-    * 5 - file formats  for linux files
-    * 6 - games and things like screen savers
-    * 7 - word processing packages & Misc
-    * 8 - System adminstration commands
-
-whatis <command>          # search man page titles by keywords
-apropos <keyword>         # search man pages by keywords same as man -k <keyword>
-
-info <command>            # read info pages
-```
-
 
 ```bash
-cat file
-cat -n file             # number output lines
-cat -e file             # to check for trailing white space an other nonprinting chars
-cat -t file             # to check for tabs
-cat file1 file2 > file  # concat outputs to a single file
-cat - > file            # from stdin to file (ctrl+d to exit)
+# Set a new environment variable
+export VARIABLE=value
 
-head -n2 file
-tail -n2 file
+# Remove an environment variable
+export -n VARIABLE
 
-tail -f file            #  output appended data as the file grows;
+# Mark a shell function for export
+export -f FUNCTION_NAME
 
-more file               # like man pages
-
-less file
-    /string         # search for a string (press n/N to go to next or previous)
-    ?string         # backward search
-    v               # open current file in an editor to edit
-    q               # exit                         
-    -I              # case insensitive search  
-```
+# Append something to the PATH variable
+export PATH=$PATH:path/to/append
 
 ```
-cp {src} {dest}
-cp -r {src_dir} {dest_dir}
-cp -t {dest_dir} {file1} {file2}
-```
 
-```
-# used to move or rename
-mv src dest
-mv -i src dest        # Prompt for confirmation before overwriting existing files
-mv -f src dest        # Do not prompt for confirmation before overwriting existing files  
-mv -n src dest        # Do not overwrite existing files 
-```
-
-```
-which exec
-whereis exec
-
-```
-```
-wc --lines {{path/to/file}}
-wc --words {{path/to/file}}
-wc --bytes {{path/to/file}}
-wc --chars {{path/to/file}}
-wc --max-line-length {{path/to/file}}
-```
-
-```
-date +%c
-date +%s
-date -d @1473305798
-
-cal
-cal 2011
-ncal
-```
-
-
-```
-bc      # basic calculator
-```
-
-```
-sleep 1     #delay for 1 s
-```
-
----
+## Commands
 
 ### Sequential commands
 
@@ -415,7 +304,174 @@ strace ls |& grep "write"           +# pipe both stdout and stderr
 # Print stdin to the terminal, and also pipe it into another program for further processing:
 echo "example" | tee /dev/tty | xargs printf "[%s]"
 
+echo "hello world" | xclip      # pipe output to clipboard
+
 ```
+
+## File and Directory management
+
+```
+# - : for short name , -- : for long name
+ls -a
+ls --all
+```
+```bash
+ls          # list everything in current directory excluding hidden files
+ls -l       # list in long format list (file type, permissions, # of hard links, owners, file size, last modify time, file name)
+
+# file names starting with a dot are hidden files
+ls -la      # list all including hidden in long format
+
+ls -lhs     # list with size in human readable format
+ls -RS      # list files recursively sorted by size(descending)
+ls -lt      # list recently modified
+ls -1       # one file per line
+ls -d */    # only directories
+ls -F
+
+ls -i       # show inode number
+```
+
+### Navigation commands
+
+```bash
+pwd            # print current(working) directory
+
+cd {path}      # change directory to another path
+cd ..          # Go up to the parent of the current directory
+cd ~           # ~ : home directory
+cd             # home directory of current user
+cd -           # Go to the previously chosen directory
+cd /           # Go to the root directory:
+
+pushd {path}    # switch to path and push it to a stack
+popd            # remove top directory from the stack and cd to it
+dirs            # display directory stack
+
+tree            # list as a tree of files
+```
+
+### Handling File and Directories
+
+```
+mkdir folder1 folder2          # create directories
+mkdir -p folder1/folder2       # create nested directories
+
+# create two folders each containing two folders
+mkdir -p folder{1,2}/folder{3,4}
+
+# Create directories with specific permissions:
+mkdir -m rwxrw-r-- path/to/directory1 path/to/directory2 ...
+
+```
+
+```bash
+touch filename
+>>filename       # create an empty file (if it exists it will update it timestamp)
+```
+
+```
+rm 
+rm -f # ignore if doesnt exist
+rm -i # ask before removing
+rm -v # print info
+rm -r # remove directories recursively
+```
+
+```
+cp {src} {dest}
+cp -r {src_dir} {dest_dir}
+cp -t {dest_dir} {file1} {file2}
+```
+
+```
+# used to move or rename
+mv src dest
+mv -i src dest        # Prompt for confirmation before overwriting existing files
+mv -f src dest        # Do not prompt for confirmation before overwriting existing files  
+mv -n src dest        # Do not overwrite existing files 
+```
+
+```bash
+alias word=command
+alias                   # list all aliases
+alias word              # view command related to an alias
+
+# set a permanent alias directly from the terminal
+echo "alias mygrep='grep -r -n -i -C2'" >> ~/.bashrc        # set alias
+source ~/.bashrc
+```
+
+
+## Text Handling
+
+### Displaying text
+
+```bash
+echo "Text $PWD $PS1 $SHELL $TERM $PATH $HOSTTYPE"
+
+echo -e         # enable special characters
+echo $?         # exit status of last executed command
+```
+```
+printf "$PATH\n"
+```
+
+```bash
+cat file                # send requested file to stdout
+cat -n file             # number output lines
+cat -e file             # to check for trailing white space an other nonprinting chars
+cat -t file             # to check for tabs
+cat file1 file2 > file  # concat outputs to a single file
+cat * > file            # all files in the folder are merged into one file
+cat - > file            # from stdin to file (ctrl+d to exit)
+```
+
+```bash
+head -n 2 file           # show the first 2 lines of the file
+tail -n 2 file           # show the last 2 lines of the file
+
+tail -f file             # Follow appended data as the file grows
+```
+
+```bash
+more file           # display file in a page by page fashion like man pages
+
+less file
+    /string         # search for a string (press n/N to go to next or previous)
+    ?string         # backward search
+    v               # open current file in an editor to edit
+    q               # exit                         
+    -I              # case insensitive search  
+    
+ls -la | less       # very useful as last command in a pipe
+```
+
+```
+which exec
+whereis exec
+```
+
+
+```
+date +%c
+date +%s
+date -d @1473305798
+
+cal
+cal 2011
+ncal
+```
+
+```
+bc      # basic calculator
+```
+
+```
+sleep 1     #delay for 1 s
+```
+
+
 
 ```
 /dev/zero       # input device generating infinite stream of zeroes
@@ -430,21 +486,25 @@ echo "example" | tee /dev/tty | xargs printf "[%s]"
 ```
 
 
+## Searching Text
+
 ```bash
 grep "{pattern}" {file}
 
-grep -F "{exact}" {file}                     # search for an exact string
-grep -r -n {pattern} {directory}             # search recursively in a directory, show line numbers
-grep -i {pattern} {file}                     # case insensitive search
-grep -E {pattern} {file}                     # use extended regular expression
-grep -H -n --color=always {pattern} {file}   # with filename and line number
-grep -C 2 "pattern" file.txt                 # show 2 lines before and after
-grep -w {pattern} {file}                     # match complete words
-grep -v {pattern} {file}                     # get all not matching
-grep -m5 {pattern} {file}                    # stop after n matches
-grep -I {pattern} {file}                     # suppress binary file matches
+grep -i {pattern} {file(s)}                     # case insensitive search
+grep -n {pattern} {file(s)}                     # show line numbers in matched pattern
+grep -v {pattern} {file(s)}                     # get all not matching
+grep -c {pattern} {file(s)}                     # get the count of matches
+grep -r -n {pattern} {directory}                # search recursively in a directory, show line numbers
+grep -w {pattern} {file(s)}                     # match complete words
+grep -m5 {pattern} {file(s)}                    # stop after n matches
+grep -F "{exact}" {file(s)}                     # search for an exact string
+grep -E {pattern} {file(s)}                     # use extended regular expression
+grep -H -n --color=always {pattern} {file(s)}   # with filename and line number
+grep -C 2 "pattern" file(s).txt                 # show 2 lines before and after
+grep -I {pattern} {file(s)}                     # suppress binary file matches
 
-grep -r -n -i -C2 "{pattern}" {dir}          # alias this 
+grep -r -n -i -C2 "{pattern}" {dir}             # alias this 
 
 ```
 * Regular Expressions
@@ -480,18 +540,41 @@ strace {proc}       # tracing system calls by executing a process
 ```
 
 ```
-du -sh {dir}                                           # show size of directory
+du -sh {dir}                                              # show size of directory
 du -h -m --max-depth=2 | sort --numeric-sort --reverse    # List the human-readable sizes of a directory and any subdirectories, up to 2 levels deep
 du -ch *.mp4
 ```
 
-```
-sort --numeric-sort --reverse file
-sort --ignore-case
-sort --unique
+```bash
+sort {file} # sort lines in a file alphabetically
+
+sort -n {file}     # numeric sort
+sort -n -r {file}     # sort in reverse
+sort -f {file}        # ignore case
+sort -u {file}        # sort a file preserving only unique lines  
+sort -b               # ignore leading blanks
+
+# Sort file by the 3rd field of each line numerically, using ":" as a field separator:
+sort -t=: -k=3n {file}
 
 sort < file > sorted_file
+```
 
+```
+# uniq does not detect repeated lines unless they are adjacent, we need to sort them first.
+
+sort {{path/to/file}} | uniq -c             # number of occurrences of each line along with that line
+sort {{path/to/file}} | uniq -d             # Display only duplicate lines
+sort {{path/to/file}} | uniq -c | sort -nr  # Display number of occurrences of each line, sorted by the most frequent:
+
+```
+
+```
+wc -l {{path/to/file}}       # Count all lines in a file
+wc -w {{path/to/file}}       # Count all words in a file
+wc -c {{path/to/file}}       # Count all bytes in a file **
+wc -m {{path/to/file}}       # Count all characters in a file
+wc -L {{path/to/file}}       # Count the length of the longest liqne in number of characters
 ```
 
 ```
@@ -499,8 +582,25 @@ sort < file > sorted_file
 spell file.txt
 ```
 
+```
+diff {old_file} {new_file}                          # Compare files
+diff -y --color=always {old_file} {new_file}        # showing the differences side by side
+diff -u --color=always {old_file} {new_file}        # showing the differences in unified format (as used by git diff)
+diff -w {old_file} {new_file}                       # Ignore white spaces
+
+diff -a -u -N  {old_file} {new_file} > {diff.patch} # create a patch file 
+```
 
 ```
+# Apply a patch to a specific file:
+patch {{path/to/file}} < {{patch.diff}}
+
+# Patch a file writing the result to a different file:
+patch {{path/to/input_file}} -o {{path/to/output_file}} < {{patch.diff}}
+```
+
+```
+ps                  # list current running process on terminal
 ps aux              # list all running processes
 ps --sort size      # sort processes by memory consumption
 watch -n 1 "ps auxf"
@@ -512,6 +612,13 @@ ps aux | awk '/root/ {print $2}'            # Print the second column of the lin
 ls -la | awk '{print $9 ":" $5}'            # print the size of all files in current directory
 awk 'NR%3==1' {{path/to/file}}              #  Print every third line starting from the first line
 echo "input" | awk '{print $1"string"}'     # append string to stdout
+```
+
+
+```
+{{command}} | sed 's/apple/mango/g'
+
+echo ${PATH} | sed 's/:/\n/g'
 ```
 
 
@@ -548,7 +655,6 @@ watch -n 60 {command}                   # run command every 60 seconds
 ```
 
 
-
 ## File Compression and Archiving
 
 * TAR (Tape Archive): Combines multiple files into a single archive without compressing them. 
@@ -574,10 +680,6 @@ tar xvzf {{archive.tar.gz}}     # both decompresses and extracts the files
 ```
 
 ```
-{{command}} | sed 's/apple/mango/g'
-```
-
-```
 cut {file} -c 2              # select two characters from each line of current file
 ls -l | cut -d ' ' -f 1-4    # selects words from 1-4 delimited by space
 ```
@@ -588,7 +690,6 @@ hexdump -C -n 64  main              # interpret 64 bytes only from beginning
 hexdump -C -s 1024 -n 64  main      # interpret 64 bytes only from 1024
 
 ```
-
 
 ```
 file {file}         # description of file type
@@ -715,6 +816,11 @@ ping -i {host}          # ping every second
 ```
 ## Get IP address of current machine
 ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+```
+
+```
+# get global ip address
+curl ifconfig.me
 ```
 
 ```
@@ -947,27 +1053,6 @@ xclip -o -sel clip
 ```
 
 
-```
-!$	        # Expand last parameter of most recent command
-!*	        # Expand all parameters of most recent command
-!-n	        # Expand nth most recent command
-!n	        # Expand nth command in history
-!<command>	# Expand most recent invocation of command <command>
-
-!!	                # Execute last command again
-!!:s/<FROM>/<TO>/	# Replace first occurrence of <FROM> to <TO> in most recent command
-!!:gs/<FROM>/<TO>/	# Replace all occurrences of <FROM> to <TO> in most recent command
-!$:t	            # Expand only basename from last parameter of most recent command
-!$:h	            # Expand only directory from last parameter of most recent command
-
-
-
-!!:n	            Expand only nth token from most recent command (command is 0; first argument is 1)
-!^	                Expand first argument from most recent command
-!$	                Expand last token from most recent command
-!!:n-m	            Expand range of tokens from most recent command
-!!:n-$	            Expand nth token to last from most recent command
-```
 
 
 ```
@@ -991,25 +1076,6 @@ tr "[:lower:]" "[:upper:]" < path/to/file
 
 # Strip out non-printable characters from a file:
 tr -cd "[:print:]" < path/to/file
-
-```
-
-
-
-
-
-```
-# Set a new environment variable:
-export VARIABLE=value
-
-# Remove an environment variable:
-export -n VARIABLE
-
-# Mark a shell function for export:
-export -f FUNCTION_NAME
-
-# Append something to the PATH variable:
-export PATH=$PATH:path/to/append
 
 ```
 

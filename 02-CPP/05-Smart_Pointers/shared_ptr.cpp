@@ -3,10 +3,13 @@
 
 /*
     - shared pointers manages shared ownership of a dynamically allocated object through reference counting.
-    - Multiple shared_ptr instances can own the same object, and the object is automatically deallocated when the last shared_ptr is destroyed.
-    - It supports thread-safe reference counting, custom deleters, and can work with std::weak_ptr to avoid circular dependencies.
-    - While it simplifies memory management and prevents leaks, it introduces some overhead due to reference counting and thread safety.
-  */
+    - Multiple shared_ptr instances can own the same object, and the object is automatically deallocated 
+      when the last shared_ptr is destroyed.
+    - It supports thread-safe reference counting, custom deleters, and can work with std::weak_ptr to 
+      avoid circular dependencies.
+    - While it simplifies memory management and prevents leaks, it introduces some overhead due to 
+      reference counting and thread safety.
+*/
 
 class MyClass {
 public:
@@ -21,9 +24,11 @@ public:
     }
 };
 
-int main() {
+int main(void) 
+{
     // Creating a shared_ptr to manage a new MyClass instance
     std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>();
+    // auto ptr1 = std::make_shared<MyClass>();
 
     // Use the shared pointer to access the object
     ptr1->display();

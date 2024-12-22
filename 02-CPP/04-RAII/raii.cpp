@@ -13,9 +13,15 @@
         - Automatic resource management
         - Exception safety (exceptions thrown may cause the allocated memory not to be freed and result in a memory leak. )
         - Prevents resource leaks
-
-
   */
+
+/*
+    - Wrap the resource inside an object
+    - acquire resource via object constructor
+    - release resource in destructor
+    - create this object on stack so that it automatically destructed when leaving
+      the scope including in case of exception
+*/
 
 class FileHandler {
 private:

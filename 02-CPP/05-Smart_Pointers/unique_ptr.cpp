@@ -6,26 +6,21 @@
 /* 
 
 * Features :
-
-    - Exclusive ownership: A unique_ptr exclusively owns the object it points to. There can't be two unique_ptrs managing the same object.
-
-    - Automatic deletion: When a unique_ptr goes out of scope, it automatically deletes the object it owns, preventing memory leaks.
-
-    - Move semantics: Ownership can be transferred between unique_ptrs using std::move(). Copying is not allowed.
-
-    - Null state: A unique_ptr can be empty (null). You can check this with if(ptr) or if(!ptr).
-
+    - Exclusive ownership: A unique_ptr exclusively owns the object it points to. 
+      There can't be two unique_ptrs managing the same object.
+    - Automatic deletion: When a unique_ptr goes out of scope, it automatically deletes
+      the object it owns, preventing memory leaks.
+    - Move semantics: Ownership can be transferred between unique_ptrs using std::move().
+      Copying is not allowed.
+    - Null state: A unique_ptr can be empty (null). 
+      You can check this with if(ptr) or if(!ptr).
     - Custom deleters: You can specify custom deletion behavior if needed.
-
     - Array support: unique_ptr can manage arrays with unique_ptr<T[]>.
-
     - No overhead: unique_ptr is designed to be as efficient as raw pointers in most cases.
-
     - Standard container compatible: You can use unique_ptr in standard containers like vector or map.
-
     - Make_unique: C++14 introduced std::make_unique for safer object creation.
-
-    - Converting to shared_ptr: You can convert a unique_ptr to a shared_ptr if shared ownership becomes necessary.
+    - Converting to shared_ptr: You can convert a unique_ptr to a shared_ptr if shared ownership
+      becomes necessary.
  */
 
 class Resource {
@@ -67,6 +62,8 @@ int main(void)
 {
     // Creating a unique_ptr
     std::unique_ptr<Resource> res1 = std::make_unique<Resource>("res1");
+    //auto res1 = std::make_unique<Resource>("res1");
+    
     res1->use();
 
     // Moving ownership [cannot copy]
@@ -112,7 +109,6 @@ int main(void)
     auto fn_delete = [](int *ptr){std::cout<<"delete\n";delete ptr;};
 
     std::unique_ptr<int,decltype(fn_delete)> int_ptr(new int(32),fn_delete);
-
 
 
     // Everything will be automatically cleaned up when main() ends

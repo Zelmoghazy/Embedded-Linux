@@ -42,6 +42,19 @@ float mul(float a, float b)
     return a*b;
 }
 
+// Modern trailing return type syntax
+// The syntax auto functionName(parameters) -> returnType
+// return type is not mandatory here, the compiler can deduce it
+auto multiply(int a, int b) -> int {
+    return a * b;
+}
+
+// More complex example with auto and decltype
+template <typename T, typename U>
+auto complexOperation(T x, U y) -> decltype(x + y) {
+    return x + y;
+}
+
 /* ----------------------------------------- */
 
 int main(void)
