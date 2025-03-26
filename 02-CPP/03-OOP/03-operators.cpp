@@ -16,7 +16,9 @@ class LCD
         // default constructor
         LCD() = default;
 
-        // explicit prevents any implicit conversions
+        /*
+            explicit prevents any implicit conversions
+        */
         explicit LCD(std::string ms) : msg(ms){};
 
         LCD(std::string ms, int curs) : msg(ms),cursor(curs){};

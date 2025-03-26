@@ -1,6 +1,7 @@
 fn main() 
 {
     let temp = 35;
+
     if temp > 30 {
         // curly braces are mandatory!
         println!("really hot outside!");
@@ -9,9 +10,11 @@ fn main()
     } else {
         println!("temperature is OK");
     }
+    
     // if is an expression!
     let day = if temp > 20 { "sunny" } else { "cloudy" };
     println!("today is {}", day);
+    
     // 20+ hot, <20 cold
     println!(
         "it is {}",

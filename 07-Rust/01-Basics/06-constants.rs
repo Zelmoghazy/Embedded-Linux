@@ -1,11 +1,12 @@
 // BASIC CONSTANT DECLARATION
+
 // Constants must have type annotations
 const MAX_POINTS: u32 = 100_000;
 const PI: f64 = 3.141_592_653_589_793;
 
-// Constants can be used in constant expressions
-const SECONDS_IN_HOUR: u32 = 60 * 60;  // 3600
-const SECONDS_IN_DAY: u32 = SECONDS_IN_HOUR * 24;  // 86400
+// Constants can be used in constant expressions (Evaluatec at compile time)
+const SECONDS_IN_HOUR: u32 = 60 * 60;               // 3600
+const SECONDS_IN_DAY: u32 = SECONDS_IN_HOUR * 24;   // 86400
 
 // String literals in constants
 const GREETING: &str = "Hello, World!";
@@ -17,6 +18,7 @@ const RECTANGLE_HEIGHT: u32 = 20;
 const RECTANGLE_AREA: u32 = RECTANGLE_WIDTH * RECTANGLE_HEIGHT;
 
 // STATIC VARIABLES
+
 // Static variables have a fixed memory location
 static PROGRAM_NAME: &str = "My Rust Program";
 // Mutable static variables are unsafe

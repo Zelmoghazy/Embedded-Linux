@@ -12,7 +12,7 @@ fn basic_scope()
     // println!("y: {}", y);                // This would fail - y is not in scope
     println!("Outer scope - x: {}", x);
     
-    // Variables are dropped in reverse order of declaration
+    // Variables are dropped (memory is freed) in reverse order of declaration
     let first  = String::from("first");
     let second = String::from("second");
     println!("Variables will be dropped in reverse order: {}, {}", second, first);

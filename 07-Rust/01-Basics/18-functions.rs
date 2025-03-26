@@ -9,7 +9,7 @@ fn increase(x: &mut i32) { // start with i32
 
 fn product(x: i32, y: i32) -> i32 { // return value
     let z = x * y;
-    z // no semicolons
+    z // no semicolons or return z;
 }
 
 pub fn main() 

@@ -1,4 +1,5 @@
-pub fn demo() {
+pub fn demo() 
+{
     /*
     let mut a = Vec::new();
 

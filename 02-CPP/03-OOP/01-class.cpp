@@ -29,6 +29,24 @@ class Car
         // Destructor take ~ followed by the name of the class and have no return type
         ~Car(){}
         
+        Car(int year) : year(year){}
+
+        /* 
+            explicit denotes preventing implicit conversions
+            class String {
+                public:
+                    String(int n); // allocate n bytes to the String object
+                    String(const char *p); // initializes object with char *p
+            };
+            String mystring = 'x';
+
+            The character 'x' will be implicitly converted to int and then the String(int) constructor will be called which is not what the user required and would lead to very subtle bugs.
+         */
+        explicit Car(std::string model) : model(model)
+        {
+
+        }
+
         // delegation constructor -> calls another constructor
         Car(std::string brand,std::string model) : Car(brand,model,0,"BLACK",50)
         {

@@ -2,9 +2,16 @@ use std::mem;
 
 pub fn main() 
 {
+    let numbers: [i32; 5] = [10, 20, 30, 40, 50];
+
+    println!("First element: {}", numbers[0]);
+    println!("Second element: {}", numbers[1]);
+    println!("Last element: {}", numbers[4]);
+
     let mut a/*:[i32;5]*/ = [1, 2, 3, 4, 5];
 
     println!("a has {} elements, first is {}", a.len(), a[0]);
+
     a[0] = 321;
     println!("first value of a is {}", a[0]);
 

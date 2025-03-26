@@ -854,17 +854,38 @@ arp
 ```
 
 ```
- - Start a listener on the specified TCP port and send a file into it:
-   nc -l -p {{port}} < {{filename}}
+# Telnet to a specific port of a host:
+telnet ip_address port
 
- - Connect to a target listener on the specified port and receive a file from it:
-   nc {{host}} {{port}} > {{received_filename}}
+# Emit the default escape character combination for terminating the session:
+Ctrl + ]
+```
 
- - Scan the open TCP ports of a specified host:
-   nc -v -z -w {{timeout_in_seconds}} {{host}} {{start_port}}-{{end_port}}
+```
 
- - Send an HTTP GET request:
-   echo -e "GET / HTTP/1.1\nHost: {{host}}\n\n" | nc {{host}} 80
+# Scan the open TCP ports of a specified host:
+nc -v -z ip_address port
+
+# Listen on a specified TCP port and print any data received:
+nc -l port
+
+# Listen on a specified UDP port and print connection details and any data received:
+nc -u -l port
+
+# Act as proxy and forward data from a local TCP port to the given remote host:
+nc -l local_port | nc hostname remote_port
+
+# Start a listener on the specified TCP port and send a file into it:
+nc -l -p {port} < {filename}
+
+# Connect to a target listener on the specified port and receive a file from it:
+nc {host} {port} > {received_filename}
+
+# Scan the open TCP ports of a specified host:
+nc -v -z -w {timeout_in_seconds} {host} {start_port}-{end_port}
+
+# Send an HTTP GET request:
+echo -e "GET / HTTP/1.1\nHost: {host}\n\n" | nc {host} 80
 ```
 
 ```
@@ -1045,15 +1066,9 @@ terminator -e 'btop; exec bash'
 ```
 
 ```
+xclip -o -sel clip
 echo "Hello world" | xclip -sel clip
 ```
-
-```
-xclip -o -sel clip
-```
-
-
-
 
 ```
 # Replace all occurrences of a character in a file, and print the result:

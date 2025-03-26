@@ -5,11 +5,11 @@ fn arithmetic_operators()
     let a = 10;
     let b = 3;
     
-    println!("Addition: {} + {} = {}", a, b, a + b);        // 13
-    println!("Subtraction: {} - {} = {}", a, b, a - b);     // 7
-    println!("Multiplication: {} * {} = {}", a, b, a * b);  // 30
-    println!("Division: {} / {} = {}", a, b, a / b);        // 3
-    println!("Remainder: {} % {} = {}", a, b, a % b);       // 1
+    println!("Addition:         {} + {} = {}", a, b, a + b);        // 13
+    println!("Subtraction:      {} - {} = {}", a, b, a - b);        // 7
+    println!("Multiplication:   {} * {} = {}", a, b, a * b);        // 30
+    println!("Division:         {} / {} = {}", a, b, a / b);        // 3
+    println!("Remainder:        {} % {} = {}", a, b, a % b);        // 1
     
     // Float arithmetic
     let x = 10.0;

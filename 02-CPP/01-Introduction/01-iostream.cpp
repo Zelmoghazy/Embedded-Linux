@@ -3,6 +3,7 @@
 #include <ostream>
 #include <iomanip>
 // #include <format>
+// #include <print>
 
 int main(void)
 {
@@ -18,6 +19,9 @@ int main(void)
 
     // cpp20 only
     // std::cout << std::format("Value : {}\n",x);
+
+    // cpp23 only
+    // std::println("Hello {}", "World!");
 
     std::cout << "Enter a number: ";
     std::cin >> x;

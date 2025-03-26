@@ -1,7 +1,9 @@
 fn while_loops() 
 {
     let mut x = 1;
-    while x < 1000 {
+
+    while x < 1000 
+    {
         x *= 2;
 
         if x == 64 {
@@ -13,7 +15,9 @@ fn while_loops()
 
     // While loop with complex condition
     let mut vec = vec![1, 2, 3, 4, 5];
-    while !vec.is_empty() {
+    
+    while !vec.is_empty() 
+    {
         let item = vec.pop().unwrap();
         println!("Popped: {}", item);
     }
