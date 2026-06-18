@@ -46,12 +46,13 @@ class EnhancedString : public std::string
 };
 
 /* Return line without beginning or end whitespace */
-std::string trim(const std::string& str) {
+std::string trim(const std::string& str) 
+{
     const auto start = str.find_first_not_of(" \t\r\n");
     // entire line is white space
     if (start == std::string::npos){
         return "";
-    } 
+    }
     const auto end = str.find_last_not_of(" \t\r\n");
     return str.substr(start, end - start + 1);
 }
@@ -59,28 +60,29 @@ std::string trim(const std::string& str) {
 int main(void) 
 {
     // Construction and Initialization
-    std::string s;                        // Default constructor
-    std::string str = "Hello";            // const char*
-    std::string s1("Hello");              // Parameterized constructor
-    std::string s2(5, 'a');               // "aaaaa"
-    std::string s3(s1);                   // Copy constructor
-    std::string s4(std::move(s3));        // Move constructor
-    std::string s5(s1.begin(),s1.end());  // Range Constructor
-    std::string s6(s2, 0, 3);             // Substring Constructor
-    std::string s7(s2, 0);                // Substring Constructor
+    std::string s;                                  // Default constructor
+    std::string str = "Hello";                      // const char*
+    std::string s1("Hello");                        // Parameterized constructor
+    std::string s2(5, 'a');                         // "aaaaa"
+    std::string s3(s1);                             // Copy constructor
+    std::string s4(std::move(s3));                  // Move constructor
+    std::string s5(s1.begin(), s1.end());           // Range Constructor
+    std::string s6(s2, 0, 3);                       // Substring Constructor
+    std::string s7(s2, 0);                          // Substring Constructor
 
     // Capacity Functions
     size_t size = s1.size();          
     size_t len = s1.length();         
     size_t cap = s1.capacity();       
     size_t max_size = s1.max_size();      
-    bool isEmpty = s.empty();        // Check if empty
-    s1.resize(10);              // Resize string
-    s1.resize(10, 'x');              // Resize string
+    bool isEmpty = s.empty();                   // Check if empty
+
+    s1.resize(10);                              // Resize string
+    s1.resize(10, 'x');                         // Resize string
 
     // Accessing Characters
-    char c = s1[0];                 // Access using operator[]
-    char d = s1.at(1);              // Access using at()
+    char c = s1[0];                 // Access using operator[], no bound checking
+    char d = s1.at(1);              // Access using at(), bound checked
     char first = s1.front();        // First character
     char last = s1.back();          // Last character
 
@@ -95,7 +97,7 @@ int main(void)
     // String Operations
     str += " World";
     std::string sub = str.substr(6, 5);  // Extract substring
-    size_t pos = str.find("world");      // Find first occurrence, ret std::strong::npos if not found
+    size_t pos = str.find("world");      // Find first occurrence, ret std::string::npos if not found
     size_t rpos = str.rfind("l");        // Find last occurrence
     int result = str.compare("Hello");   // Compare strings
 

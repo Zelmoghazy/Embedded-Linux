@@ -4,7 +4,8 @@
 #include <numeric>   // For accumulate
 #include <functional>// For greater
 
-void printVector(const std::vector<int>& vec, const char *message) {
+void printVector(const std::vector<int>& vec, const char *message) 
+{
     std::cout << message << " ";
     for (int elem : vec) {
         std::cout << elem << " ";
@@ -35,11 +36,12 @@ int main(void)
 
     // Accessing elements
     std::cout << "First element of vec3: "  << vec3[0] << std::endl;
+    // bounds checking 
     std::cout << "Second element of vec3: " << vec3.at(1) << std::endl;
 
     // Accessing and Modifying elements
-    vec3[0]    = 10;       // Change first element
-    vec3.at(1) = 20;    // Change second element (bound checking)
+    vec3[0]    = 10;        // Change first element
+    vec3.at(1) = 20;        // Change second element (bound checking)
 
     int frontElement = vec3.front();
     std::cout << "Front element: " << frontElement << std::endl;
@@ -67,7 +69,6 @@ int main(void)
     vec1.insert(vec1.begin() + 2, 5);   // Insert 5 at index 2
 
     printVector(vec1, "vec1 after insert : ");
-
 
     // Assigning elements
     vec1.assign({1,2,3,4,5,6,7,8,9});
@@ -196,6 +197,19 @@ int main(void)
     for (const auto& p : vecPairs) {
         std::cout << p.first << " - " << p.second << std::endl;
     }
+
+    std::vector<int> v = {3, 1, 7, 2, 9, 4, 6};
+
+    int maxEl = *std::max_element(v.begin(), v.end());
+    int minEl = *std::min_element(v.begin(), v.end());
+
+    std::cout << "Max: " << maxEl << "\n";
+    std::cout << "Min: " << minEl << "\n";
+
+    // binary search
+    bool found = std::binary_search(v.begin(), v.end(), 7);
+    std::cout << "Found : " << found << "\n";
+
 
     return 0;
 }

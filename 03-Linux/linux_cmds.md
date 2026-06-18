@@ -973,14 +973,25 @@ echo -e "GET / HTTP/1.1\nHost: {host}\n\n" | nc {host} 80
  - List installed packages:
    dpkg -l {{pattern}}
 
+- only names of installed packages
+ dpkg -l  | awk '/^ii/ {print $2}'
+
  - List a package's contents:
    dpkg -L {{package}}
+
+
 
  - List contents of a local package file:
    dpkg -c {{path/to/file.deb}}
 
  - Find out which package owns a file:
    dpkg -S {{path/to/file}}
+```
+
+### apt
+
+```
+apt list --installed | cut -d'/' -f1
 ```
 
 ## Tracking
@@ -1066,8 +1077,13 @@ terminator -e 'btop; exec bash'
 ```
 
 ```
+ - Paste the contents of the system clipboard to the console:
 xclip -o -sel clip
+xclip -o -sel clip > main.c
 echo "Hello world" | xclip -sel clip
+
+ - Copy the contents of a file into the system clipboard:
+   xclip -sel clip {{input_file.txt}}
 ```
 
 ```
@@ -1276,4 +1292,31 @@ For equivalent commands in other package managers
 
  - Purge an installed or already removed package, including configuration:
    dpkg -P package
+```
+
+
+```
+ - Find the processes that have a given file open:
+   lsof {{path/to/file}}
+
+ - Find the process that opened a local internet port:
+   lsof -i :{{port}}
+
+ - Only output the process ID (PID):
+   lsof -t {{path/to/file}}
+
+ - List files opened by the given user:
+   lsof -u {{username}}
+
+ - List files opened by the given command or process:
+   lsof -c {{process_or_command_name}}
+
+ - List files opened by a specific process, given its PID:
+   lsof -p {{PID}}
+
+ - List open files in a directory:
+   lsof +D {{path/to/directory}}
+
+ - Find the process that is listening on a local IPv6 TCP port and don't convert network or port numbers:
+   lsof -i6TCP:{{port}} -sTCP:LISTEN -n -P
 ```
